@@ -49,7 +49,8 @@ Everything below is committed in this repository and downloadable directly from 
 
 | Deliverable | Download | What it is |
 |---|---|---|
-| **Presentation deck** | [`.pptx`](https://greentoken-7gc.pages.dev/downloads/GreenToken-Verifiable-Carbon-Tokens-Unit5.pptx) · [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Verifiable-Carbon-Tokens-Unit5.pdf) | 21 slides · the full Unit 5 pitch, built on the white-and-green theme |
+| **Story deck** | [`.pptx`](https://greentoken-7gc.pages.dev/downloads/GreenToken-The-Tree-That-Was-Sold-Twice.pptx) · [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-The-Tree-That-Was-Sold-Twice.pdf) | 30 slides · problem-first, in four acts: the climate and carbon-market problem with real statistics → the trust game and why it collapses → Hyperledger Fabric taught → GreenToken, the proof and the close |
+| **Unit 5 deck** | [`.pptx`](https://greentoken-7gc.pages.dev/downloads/GreenToken-Verifiable-Carbon-Tokens-Unit5.pptx) · [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Verifiable-Carbon-Tokens-Unit5.pdf) | 21 slides · the technical pitch: architecture, the contract, the ledger and the demo |
 | **Study guide** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Guide.pdf) | 30 pages · Fabric from first principles, the architecture, the demo script and 20 viva Q&A with answers |
 | **Diagram pack** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Diagrams.pdf) | 15 pages · 13 full-page diagrams mapping the project onto Fabric — the components, the six-phase lifecycle, endorsement and quorum, ledger anatomy, tamper localisation, and the honest scope |
 | **Case study report** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Case-Study-21CSE435T.pdf) · [DOCX](https://greentoken-7gc.pages.dev/downloads/GreenToken-Case-Study-21CSE435T.docx) | 38 pages · the full departmental case-study format — title page, declaration, certificate, acknowledgements, abstract, contents, ten numbered chapters, evidence register, references |
@@ -74,6 +75,23 @@ to materialise the real files locally, or
 
 to pull the deliverables *and* the screenshots from the live deployment in one
 command.
+
+### The story deck
+
+[`GreenToken-The-Tree-That-Was-Sold-Twice.pptx`](https://greentoken-7gc.pages.dev/downloads/GreenToken-The-Tree-That-Was-Sold-Twice.pptx)
+is the deck to present. It is built as a story in four acts, and every number in
+it is sourced rather than asserted.
+
+| Act | Slides | What it does |
+|---|---|---|
+| **1 — The problem** | 1–9 | Opens on one tree being sold twice, then scales up: 2024 was the warmest year in the 175-year record (1.55 °C); the remaining 1.5 °C budget is under four years of emissions; CO₂ hit 426.8 ppm in 2025, 153% of pre-industrial; the voluntary carbon market is worth $1.4 bn against 294 Mt issued and 202 Mt retired; and >80% of issued credits deliver less than claimed. Then India: 8.27 lakh km² of forest, 268 crore saplings, and a verification step that does not scale. |
+| **2 — The trust game** | 10–15 | The four parties and what each fears; the verification commons as a 2×2 payoff matrix with a bad Nash equilibrium; why the market cannot coordinate out of it; the three levers that change the payoffs; and why this design wins. |
+| **3 — Fabric, taught** | 16–22 | The six components, the hash chain, the signature, the six-phase lifecycle, endorsement and quorum, and the two storage layers. |
+| **4 — GreenToken** | 23–30 | The end-to-end flow, the eight invariants, one contract three hosts, the tamper test, the measured numbers, an honest scope page, and the close. |
+
+Sources are printed on every slide that carries a statistic — WMO,
+Global Carbon Project, NOAA, UNCTAD, MSCI, Probs et al. (*Nature
+Communications*), US GAO, Transparency International, ISFR 2023.
 
 ### The first-principles course
 

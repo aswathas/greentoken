@@ -28,6 +28,8 @@ cp dist-deliverables/DEMO-CARD.pdf                                dist/downloads
 cp dist-deliverables/GreenToken-Case-Study-21CSE435T.pdf         dist/downloads/
 cp dist-deliverables/GreenToken-Case-Study-21CSE435T.docx        dist/downloads/
 cp dist-deliverables/Hyperledger-Fabric-First-Principles.pdf      dist/downloads/
+cp dist-deliverables/GreenToken-The-Tree-That-Was-Sold-Twice.pptx  dist/downloads/
+cp dist-deliverables/GreenToken-The-Tree-That-Was-Sold-Twice.pdf   dist/downloads/
 cp docs/diagrams.html                                             dist/downloads/
 cp docs/guide.html                                                dist/downloads/
 cp docs/screenshots/*.png                                         dist/downloads/
@@ -39,7 +41,7 @@ echo
 echo "==> verifying"
 for f in GreenToken-Verifiable-Carbon-Tokens-Unit5.pptx GreenToken-Fabric-Guide.pdf \
          GreenToken-Fabric-Diagrams.pdf DEMO-CARD.pdf GreenToken-Case-Study-21CSE435T.pdf \
-         Hyperledger-Fabric-First-Principles.pdf; do
+         Hyperledger-Fabric-First-Principles.pdf GreenToken-The-Tree-That-Was-Sold-Twice.pptx; do
   code="$(curl -s -o /dev/null -w '%{http_code} %{size_download}' \
     "https://greentoken-7gc.pages.dev/downloads/$f")"
   echo "    $f -> $code"
