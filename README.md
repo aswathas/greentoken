@@ -52,12 +52,13 @@ Everything below is committed in this repository and downloadable directly from 
 | **Presentation deck** | [`.pptx`](https://greentoken-7gc.pages.dev/downloads/GreenToken-Verifiable-Carbon-Tokens-Unit5.pptx) · [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Verifiable-Carbon-Tokens-Unit5.pdf) | 21 slides · the full Unit 5 pitch, built on the white-and-green theme |
 | **Study guide** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Guide.pdf) | 30 pages · Fabric from first principles, the architecture, the demo script and 20 viva Q&A with answers |
 | **Diagram pack** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Diagrams.pdf) | 15 pages · 13 full-page diagrams mapping the project onto Fabric — the components, the six-phase lifecycle, endorsement and quorum, ledger anatomy, tamper localisation, and the honest scope |
+| **Case study report** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Case-Study-21CSE435T.pdf) · [DOCX](https://greentoken-7gc.pages.dev/downloads/GreenToken-Case-Study-21CSE435T.docx) | 38 pages · the full departmental case-study format — title page, declaration, certificate, acknowledgements, abstract, contents, ten numbered chapters, evidence register, references |
 | **Demo card** | [PDF](https://greentoken-7gc.pages.dev/downloads/DEMO-CARD.pdf) | One printable page · the whole demo on a card to hold during the presentation |
 | **Run of show** | [`docs/demo-run-of-show.md`](docs/demo-run-of-show.md) | Timed script with exact click paths and the wording for the tamper demonstration |
 | **Live demo** | <https://greentoken-7gc.pages.dev> | The running application — plant → verify → fund → settle → tamper test |
 
-The deck, the study guide, the diagram pack and the demo card are served
-straight from the live deployment, so the links above never rot. The **same bytes are also committed in
+The deck, the study guide, the diagram pack, the case study report and the demo
+card are served straight from the live deployment, so the links above never rot. The **same bytes are also committed in
 this repository** as `.b64` files under `dist-deliverables/` — run
 
 ```bash
@@ -72,6 +73,45 @@ to materialise the real files locally, or
 
 to pull the deliverables *and* the screenshots from the live deployment in one
 command.
+
+### The case study report
+
+[`GreenToken-Case-Study-21CSE435T.pdf`](https://greentoken-7gc.pages.dev/downloads/GreenToken-Case-Study-21CSE435T.pdf)
+is a 38-page case study written to the departmental template for
+**21CSE435T — Smart Contracts and Application Development**: the same A4 page
+set-up, Times New Roman, justified 1.5-spaced body, blue numbered headings,
+dark-headed tables with captions above, captioned figures, a page-numbered
+footer, and the full preliminary-pages structure (title page, own-work
+declaration, bonafide certificate, acknowledgements, abstract, contents,
+lists of figures and tables, abbreviations).
+
+| Chapter | Content |
+|---|---|
+| 1 | Title identification and case context — the carbon-credit verification gap |
+| 2 | One-page abstract, research questions, objectives and methodology |
+| 3 | Literature review — consortium ledgers, Fabric architecture, the transaction lifecycle, MRV |
+| 4 | Analytical contribution, research gap, alternatives considered, success criteria |
+| 5 | Development roadmap and delivery timeline |
+| 6 | Architecture and design — the consortium, the contract, the data model, the threat model |
+| 7 | Implementation — the three hosts, the front end, the deployment, the test programme |
+| 8 | Evaluation framework and validation plan |
+| 9 | Results and discussion — measured ledger results, business outcome, scenario analysis, limitations |
+| 10 | Conclusions, recommendation and an adoption checklist |
+| A | Evidence register and eight review questions |
+
+The Table of Contents, List of Figures and List of Tables are not typed by hand:
+the builder renders the document, measures where every section, figure and
+table actually falls, and writes those page numbers back into the front
+matter — so the contents cannot disagree with the body.
+
+Regenerate it with:
+
+```bash
+python3 scripts/build-case-study.py
+```
+
+Set your name and register number in the two constants at the top of that
+script before regenerating.
 
 ### The diagram pack
 

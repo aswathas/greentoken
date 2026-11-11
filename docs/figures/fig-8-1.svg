@@ -1,0 +1,130 @@
+<svg class="dg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 478" width="1000" height="478"><style>
+@page { size: A4 landscape; margin: 13mm 13mm 12mm 13mm; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+:root {
+  --paper: #FFFFFF;
+  --tint: #F4F8F5;
+  --tint2: #E6F4EC;
+  --line: #DCE8E0;
+  --ink: #12211A;
+  --dim: #48654F;
+  --faint: #75897D;
+  --accent: #1E8E4E;
+  --deep: #14663A;
+  --warn: #96650C;
+  --danger: #C0392B;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--sans); font-size: 10pt; line-height: 1.5; color: var(--ink); background: var(--paper); }
+
+@media screen {
+  html { background: #d5d5d5; }
+  body { padding: 18px 0; }
+  body > section { width: 297mm; min-height: 210mm; margin: 0 auto 18px; background: #fff;
+                   box-shadow: 0 4px 24px rgba(0,0,0,.18); padding: 13mm; overflow: hidden; }
+}
+
+.page { break-after: page; }
+.page:last-child { break-after: auto; }
+.cover { break-after: page; }
+
+h2 { font-size: 15pt; margin: 0 0 1.5mm; letter-spacing: -0.4pt; font-weight: 700; }
+p { margin: 0 0 2mm; }
+p.lead { font-size: 10.5pt; color: var(--dim); line-height: 1.5; margin-bottom: 3mm; }
+em { font-style: italic; }
+strong { font-weight: 700; }
+.mono { font-family: var(--mono); font-size: 0.94em; }
+
+.dg { width: 100%; height: 118mm; display: block; margin: 1mm 0 2.5mm; }
+.dg .bx { stroke-width: 1.4; }
+.bx--ink  { fill: #FFFFFF; stroke: #B9D2C4; }
+.bx--acc  { fill: var(--tint2); stroke: var(--accent); }
+.bx--mut  { fill: var(--tint); stroke: var(--line); }
+.bx--warn { fill: #FDF6E8; stroke: #D8A64B; }
+.bx--bad  { fill: #FDECEA; stroke: #C0392B; }
+.bx--chan { fill: #F1F8F4; stroke: #B9D2C4; stroke-dasharray: 5 3; }
+.dg .ln { stroke: #5E7D68; stroke-width: 1.6; fill: none; }
+.dg .lnacc { stroke: #1E8E4E; stroke-width: 1.8; fill: none; }
+.dg .lnbad { stroke: #C0392B; stroke-width: 1.8; fill: none; }
+.dg text { font-family: var(--sans); }
+.t1 { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.t2 { font-size: 13px; font-weight: 600; fill: var(--ink); }
+.t3 { font-size: 12px; fill: var(--dim); }
+.t3c { font-size: 12px; fill: #1B4A2E; }
+.t3w { font-size: 12px; fill: #A15C08; }
+.t3bad { font-size: 12px; fill: #A32A1C; }
+.t4 { font-size: 11px; fill: var(--faint); }
+.t4c { font-size: 11px; fill: #3F7A57; }
+.t4w { font-size: 11px; fill: #A15C08; }
+
+.cap {
+  font-size: 9.1pt; line-height: 1.44; color: var(--dim);
+  border-left: 2.5pt solid var(--accent); background: var(--tint);
+  padding: 2.4mm 3.2mm; border-radius: 0 2mm 2mm 0; margin: 0 0 2mm;
+}
+.cap strong { color: var(--ink); }
+.say {
+  font-size: 9.3pt; line-height: 1.44; color: #22402F;
+  border-left: 2.5pt solid #B7D9C3; background: #FBFDFC;
+  padding: 2.2mm 3.2mm; border-radius: 0 2mm 2mm 0; margin: 0 0 1.6mm;
+}
+.say em { color: var(--deep); }
+.say__k {
+  display: inline-block; font-size: 7pt; font-weight: 800; letter-spacing: 1.2pt;
+  text-transform: uppercase; color: var(--accent); margin-right: 2.5mm;
+}
+.legend { display: flex; gap: 6mm; font-size: 8pt; color: var(--faint); margin-top: 1mm; }
+.legend span { display: flex; align-items: center; gap: 1.5mm; }
+.sw { width: 11px; height: 11px; border-radius: 3px; display: inline-block; border: 1.2px solid; }
+.sw--ink { background: #fff; border-color: #B9D2C4; }
+.sw--acc { background: var(--tint2); border-color: var(--accent); }
+.sw--warn { background: #FDF6E8; border-color: #D8A64B; }
+.sw--mut { background: var(--tint); border-color: var(--line); }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; margin-bottom: 3mm; }
+.g2 h3 { font-size: 11pt; margin: 0 0 1.6mm; color: var(--deep); }
+ul { margin: 0; padding-left: 4.5mm; }
+li { margin-bottom: 1.2mm; font-size: 9.4pt; color: var(--dim); }
+
+.toc { margin-top: 2mm; border-top: 1pt solid var(--line); padding-top: 2.5mm; }
+.toc-row { display: flex; align-items: baseline; gap: 2mm; text-decoration: none; color: var(--ink);
+           font-size: 10pt; padding: 1.2mm 0; border-bottom: 0.5pt dotted #E4EDE7; }
+.toc-row .dots { flex: 1; border-bottom: 0.5pt dotted #C9D9CE; transform: translateY(-1.2mm); }
+.toc-row .pr { color: var(--faint); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* cover */
+.cvmast { display: flex; align-items: center; justify-content: space-between;
+          background: linear-gradient(120deg, #14382A, #1E5A3B 60%, #2A7449);
+          border-radius: 2.5mm; padding: 6mm 8mm; margin-bottom: 8mm; }
+.cvmast__word { font-size: 19pt; font-weight: 800; letter-spacing: 4pt; color: #EAF3EC; line-height: 1; }
+.cvmast__sub { font-size: 8.4pt; letter-spacing: 1.4pt; color: #A9D2BC; margin-top: 3mm; text-transform: uppercase; }
+.cvtitle { font-size: 30pt; line-height: 1.1; margin: 0 0 5mm; font-weight: 700; letter-spacing: -1pt; }
+.cvacc { color: var(--accent); }
+.cvsub { font-size: 11.5pt; line-height: 1.5; color: var(--dim); max-width: 215mm; margin: 0 0 8mm; }
+.cvmeta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; border-top: 1pt solid var(--line); padding-top: 4mm; }
+.cvmeta span { display: block; font-size: 7.4pt; text-transform: uppercase; letter-spacing: 1.2pt; color: var(--faint); font-weight: 700; }
+.cvmeta strong { display: block; font-size: 10pt; margin-top: 1mm; }
+.cvinside { margin-top: 7mm; border-top: 1pt solid var(--line); padding-top: 4mm; }
+.cvinside__h { font-size: 7.4pt; text-transform: uppercase; letter-spacing: 1.4pt; color: var(--faint); font-weight: 800; margin-bottom: 2.5mm; }
+.cvinside__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5mm; }
+.cvinside__row b { display: block; font-size: 9.6pt; color: var(--deep); margin-bottom: 1mm; }
+.cvinside__row span { display: block; font-size: 8.6pt; color: var(--dim); line-height: 1.42; }
+.cvtail { margin-top: 6mm; font-size: 13pt; font-weight: 700; letter-spacing: 0.6pt; color: var(--accent); }
+
+.dg { width: 100%; height: auto; display: block; }
+svg { background: #FFFFFF; }
+text { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+</style><rect x="0" y="0" width="1000" height="478" fill="#FFFFFF"/>
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+  <marker id="arw" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#96650C"/>
+  </marker>
+</defs>
+<rect x="40" y="80" width="170" height="90" rx="8" class="bx bx--ink"/><text x="125" y="108" class="t1" text-anchor="middle">Genesis</text><text x="125" y="130" class="t3" text-anchor="middle">hash 0000…0000</text><text x="125" y="150" class="t3c" text-anchor="middle">verified ✓</text><rect x="240" y="80" width="170" height="90" rx="8" class="bx bx--ink"/><text x="325" y="108" class="t1" text-anchor="middle">Block 28</text><text x="325" y="130" class="t3" text-anchor="middle">hash a91f…4c2e</text><text x="325" y="150" class="t3c" text-anchor="middle">verified ✓</text><rect x="440" y="80" width="170" height="90" rx="8" class="bx bx--ink"/><text x="525" y="108" class="t1" text-anchor="middle">Block 29</text><text x="525" y="130" class="t3" text-anchor="middle">hash 7d03…b118</text><text x="525" y="150" class="t3c" text-anchor="middle">verified ✓</text><rect x="640" y="80" width="170" height="90" rx="8" class="bx bx--bad"/><text x="725" y="108" class="t1" text-anchor="middle">Block 30</text><text x="725" y="130" class="t3" text-anchor="middle">hash e56b…09af</text><text x="725" y="150" class="t3bad" text-anchor="middle">TAMPERED ✕</text><line x1="210" y1="125" x2="238" y2="125" class="ln" marker-end="url(#ar)"/><line x1="410" y1="125" x2="438" y2="125" class="ln" marker-end="url(#ar)"/><line x1="610" y1="125" x2="638" y2="125" class="ln" marker-end="url(#ar)"/><path d="M725 178 V206 H125 V178" class="lnbad" stroke-dasharray="5 3" marker-end="url(#ar)"/><text x="425" y="224" class="t3w" text-anchor="middle">altering block 30 changes its hash — and every hash after it</text><rect x="40" y="250" width="460" height="210" rx="10" class="bx bx--ink"/><text x="60" y="278" class="t1" text-anchor="start">The verifier walks the chain FROM GENESIS</text><rect x="60" y="292" width="22" height="20" rx="10" class="bx bx--acc"/><text x="71" y="306" class="t3c" text-anchor="middle">1</text><text x="94" y="306" class="t3" text-anchor="start">Recompute every block hash from the previous hash + Merkle root</text><rect x="60" y="322" width="22" height="20" rx="10" class="bx bx--acc"/><text x="71" y="336" class="t3c" text-anchor="middle">2</text><text x="94" y="336" class="t3" text-anchor="start">Recompute every transaction's payload hash</text><rect x="60" y="352" width="22" height="20" rx="10" class="bx bx--acc"/><text x="71" y="366" class="t3c" text-anchor="middle">3</text><text x="94" y="366" class="t3" text-anchor="start">Recompute the Merkle root from the leaves</text><rect x="60" y="382" width="22" height="20" rx="10" class="bx bx--acc"/><text x="71" y="396" class="t3c" text-anchor="middle">4</text><text x="94" y="396" class="t3" text-anchor="start">At the first disagreement — report the block, the field, and why</text><text x="60" y="442" class="t4" text-anchor="start">GreenToken's Ledger Explorer → ⚠ Tamper with last block</text><rect x="530" y="250" width="440" height="210" rx="10" class="bx bx--warn"/><text x="550" y="278" class="t1" text-anchor="start">Why the verifier is not enough on its own</text><text x="550" y="306" class="t3" text-anchor="start">Hashes localise a tamper. They do not prevent one —</text><text x="550" y="324" class="t3" text-anchor="start">an attacker could recompute the whole chain consistently.</text><text x="550" y="352" class="t3" text-anchor="start">That is what the signatures are for:</text><text x="550" y="374" class="t3" text-anchor="start">▪ the orderer's signature over each block header</text><text x="550" y="394" class="t3" text-anchor="start">▪ each endorser's signature over its transaction payload</text><text x="550" y="420" class="t3w" text-anchor="start">Recompute the hashes and you still cannot produce those signatures</text><text x="550" y="440" class="t3w" text-anchor="start">without the corresponding private keys.</text></svg>

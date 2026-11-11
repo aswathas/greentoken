@@ -1,0 +1,130 @@
+<svg class="dg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 505" width="1000" height="505"><style>
+@page { size: A4 landscape; margin: 13mm 13mm 12mm 13mm; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+:root {
+  --paper: #FFFFFF;
+  --tint: #F4F8F5;
+  --tint2: #E6F4EC;
+  --line: #DCE8E0;
+  --ink: #12211A;
+  --dim: #48654F;
+  --faint: #75897D;
+  --accent: #1E8E4E;
+  --deep: #14663A;
+  --warn: #96650C;
+  --danger: #C0392B;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--sans); font-size: 10pt; line-height: 1.5; color: var(--ink); background: var(--paper); }
+
+@media screen {
+  html { background: #d5d5d5; }
+  body { padding: 18px 0; }
+  body > section { width: 297mm; min-height: 210mm; margin: 0 auto 18px; background: #fff;
+                   box-shadow: 0 4px 24px rgba(0,0,0,.18); padding: 13mm; overflow: hidden; }
+}
+
+.page { break-after: page; }
+.page:last-child { break-after: auto; }
+.cover { break-after: page; }
+
+h2 { font-size: 15pt; margin: 0 0 1.5mm; letter-spacing: -0.4pt; font-weight: 700; }
+p { margin: 0 0 2mm; }
+p.lead { font-size: 10.5pt; color: var(--dim); line-height: 1.5; margin-bottom: 3mm; }
+em { font-style: italic; }
+strong { font-weight: 700; }
+.mono { font-family: var(--mono); font-size: 0.94em; }
+
+.dg { width: 100%; height: 118mm; display: block; margin: 1mm 0 2.5mm; }
+.dg .bx { stroke-width: 1.4; }
+.bx--ink  { fill: #FFFFFF; stroke: #B9D2C4; }
+.bx--acc  { fill: var(--tint2); stroke: var(--accent); }
+.bx--mut  { fill: var(--tint); stroke: var(--line); }
+.bx--warn { fill: #FDF6E8; stroke: #D8A64B; }
+.bx--bad  { fill: #FDECEA; stroke: #C0392B; }
+.bx--chan { fill: #F1F8F4; stroke: #B9D2C4; stroke-dasharray: 5 3; }
+.dg .ln { stroke: #5E7D68; stroke-width: 1.6; fill: none; }
+.dg .lnacc { stroke: #1E8E4E; stroke-width: 1.8; fill: none; }
+.dg .lnbad { stroke: #C0392B; stroke-width: 1.8; fill: none; }
+.dg text { font-family: var(--sans); }
+.t1 { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.t2 { font-size: 13px; font-weight: 600; fill: var(--ink); }
+.t3 { font-size: 12px; fill: var(--dim); }
+.t3c { font-size: 12px; fill: #1B4A2E; }
+.t3w { font-size: 12px; fill: #A15C08; }
+.t3bad { font-size: 12px; fill: #A32A1C; }
+.t4 { font-size: 11px; fill: var(--faint); }
+.t4c { font-size: 11px; fill: #3F7A57; }
+.t4w { font-size: 11px; fill: #A15C08; }
+
+.cap {
+  font-size: 9.1pt; line-height: 1.44; color: var(--dim);
+  border-left: 2.5pt solid var(--accent); background: var(--tint);
+  padding: 2.4mm 3.2mm; border-radius: 0 2mm 2mm 0; margin: 0 0 2mm;
+}
+.cap strong { color: var(--ink); }
+.say {
+  font-size: 9.3pt; line-height: 1.44; color: #22402F;
+  border-left: 2.5pt solid #B7D9C3; background: #FBFDFC;
+  padding: 2.2mm 3.2mm; border-radius: 0 2mm 2mm 0; margin: 0 0 1.6mm;
+}
+.say em { color: var(--deep); }
+.say__k {
+  display: inline-block; font-size: 7pt; font-weight: 800; letter-spacing: 1.2pt;
+  text-transform: uppercase; color: var(--accent); margin-right: 2.5mm;
+}
+.legend { display: flex; gap: 6mm; font-size: 8pt; color: var(--faint); margin-top: 1mm; }
+.legend span { display: flex; align-items: center; gap: 1.5mm; }
+.sw { width: 11px; height: 11px; border-radius: 3px; display: inline-block; border: 1.2px solid; }
+.sw--ink { background: #fff; border-color: #B9D2C4; }
+.sw--acc { background: var(--tint2); border-color: var(--accent); }
+.sw--warn { background: #FDF6E8; border-color: #D8A64B; }
+.sw--mut { background: var(--tint); border-color: var(--line); }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; margin-bottom: 3mm; }
+.g2 h3 { font-size: 11pt; margin: 0 0 1.6mm; color: var(--deep); }
+ul { margin: 0; padding-left: 4.5mm; }
+li { margin-bottom: 1.2mm; font-size: 9.4pt; color: var(--dim); }
+
+.toc { margin-top: 2mm; border-top: 1pt solid var(--line); padding-top: 2.5mm; }
+.toc-row { display: flex; align-items: baseline; gap: 2mm; text-decoration: none; color: var(--ink);
+           font-size: 10pt; padding: 1.2mm 0; border-bottom: 0.5pt dotted #E4EDE7; }
+.toc-row .dots { flex: 1; border-bottom: 0.5pt dotted #C9D9CE; transform: translateY(-1.2mm); }
+.toc-row .pr { color: var(--faint); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* cover */
+.cvmast { display: flex; align-items: center; justify-content: space-between;
+          background: linear-gradient(120deg, #14382A, #1E5A3B 60%, #2A7449);
+          border-radius: 2.5mm; padding: 6mm 8mm; margin-bottom: 8mm; }
+.cvmast__word { font-size: 19pt; font-weight: 800; letter-spacing: 4pt; color: #EAF3EC; line-height: 1; }
+.cvmast__sub { font-size: 8.4pt; letter-spacing: 1.4pt; color: #A9D2BC; margin-top: 3mm; text-transform: uppercase; }
+.cvtitle { font-size: 30pt; line-height: 1.1; margin: 0 0 5mm; font-weight: 700; letter-spacing: -1pt; }
+.cvacc { color: var(--accent); }
+.cvsub { font-size: 11.5pt; line-height: 1.5; color: var(--dim); max-width: 215mm; margin: 0 0 8mm; }
+.cvmeta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; border-top: 1pt solid var(--line); padding-top: 4mm; }
+.cvmeta span { display: block; font-size: 7.4pt; text-transform: uppercase; letter-spacing: 1.2pt; color: var(--faint); font-weight: 700; }
+.cvmeta strong { display: block; font-size: 10pt; margin-top: 1mm; }
+.cvinside { margin-top: 7mm; border-top: 1pt solid var(--line); padding-top: 4mm; }
+.cvinside__h { font-size: 7.4pt; text-transform: uppercase; letter-spacing: 1.4pt; color: var(--faint); font-weight: 800; margin-bottom: 2.5mm; }
+.cvinside__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5mm; }
+.cvinside__row b { display: block; font-size: 9.6pt; color: var(--deep); margin-bottom: 1mm; }
+.cvinside__row span { display: block; font-size: 8.6pt; color: var(--dim); line-height: 1.42; }
+.cvtail { margin-top: 6mm; font-size: 13pt; font-weight: 700; letter-spacing: 0.6pt; color: var(--accent); }
+
+.dg { width: 100%; height: auto; display: block; }
+svg { background: #FFFFFF; }
+text { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+</style><rect x="0" y="0" width="1000" height="505" fill="#FFFFFF"/>
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+  <marker id="arw" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#96650C"/>
+  </marker>
+</defs>
+<rect x="30" y="16" width="940" height="56" rx="10" class="bx bx--warn"/><text x="500" y="40" class="t2" text-anchor="middle">Ordering service  ·  consortium-ordering-service  ·  Raft, single node for the lab</text><text x="500" y="60" class="t4" text-anchor="middle">sequences blocks only — every business rule is enforced in chaincode</text><rect x="30" y="100" width="190" height="300" rx="10" class="bx bx--ink"/><rect x="30" y="100" width="190" height="44" rx="10" class="bx bx--acc"/><text x="125" y="120" class="t1c" text-anchor="middle">Planters Association</text><text x="125" y="136" class="t4c" text-anchor="middle">PlantersAssociationMSP</text><text x="42" y="162" class="t3" text-anchor="start">9 participants</text><text x="42" y="182" class="t4" text-anchor="start">Lakshmi Gowda — FPO Coordinator</text><text x="42" y="197" class="t4" text-anchor="start">Ravi Patil — Farmer</text><text x="42" y="212" class="t4" text-anchor="start">Sunita Devi — SHG Lead</text><text x="42" y="227" class="t4" text-anchor="start">Imran Sheikh · Meena Kumari · Kavita Reddy</text><text x="42" y="242" class="t4" text-anchor="start">Deepak Joshi · Arjun Nair · Ramesh Yadav</text><rect x="42" y="262" width="166" height="56" rx="6" class="bx bx--mut"/><text x="125" y="282" class="t3c" text-anchor="middle">PlantTree</text><text x="42" y="336" class="t3" text-anchor="start">✓ can plant</text><text x="42" y="356" class="t3w" text-anchor="start">✕ cannot endorse or fund</text><text x="42" y="382" class="t4" text-anchor="start">peer(s) in the lab network</text><path d="M125 100 V80 H500 V76" class="ln" marker-end="url(#ar)"/><rect x="280" y="100" width="190" height="300" rx="10" class="bx bx--ink"/><rect x="280" y="100" width="190" height="44" rx="10" class="bx bx--acc"/><text x="375" y="120" class="t1c" text-anchor="middle">State Forest Department</text><text x="375" y="136" class="t4c" text-anchor="middle">ForestDeptMSP</text><text x="292" y="162" class="t3" text-anchor="start">2 participants</text><text x="292" y="182" class="t4" text-anchor="start">Dr. S. Raghavan — Chief Forest Officer</text><text x="292" y="197" class="t4" text-anchor="start">Anjali Deshmukh — District Forest Officer</text><rect x="292" y="262" width="166" height="56" rx="6" class="bx bx--mut"/><text x="375" y="282" class="t3c" text-anchor="middle">VerifyPlanting</text><text x="292" y="336" class="t3" text-anchor="start">✓ can endorse and reject</text><text x="292" y="356" class="t3w" text-anchor="start">✕ cannot plant or settle</text><text x="292" y="382" class="t4" text-anchor="start">peer(s) in the lab network</text><path d="M375 100 V80 H500 V76" class="ln" marker-end="url(#ar)"/><rect x="530" y="100" width="190" height="300" rx="10" class="bx bx--ink"/><rect x="530" y="100" width="190" height="44" rx="10" class="bx bx--acc"/><text x="625" y="120" class="t1c" text-anchor="middle">Independent Carbon Auditor</text><text x="625" y="136" class="t4c" text-anchor="middle">AuditorMSP</text><text x="542" y="162" class="t3" text-anchor="start">1 participant</text><text x="542" y="182" class="t4" text-anchor="start">Nikhil Kapoor — Independent Carbon Auditor</text><rect x="542" y="262" width="166" height="56" rx="6" class="bx bx--mut"/><text x="625" y="282" class="t3c" text-anchor="middle">VerifyPlanting · SettleFunding</text><text x="542" y="336" class="t3" text-anchor="start">✓ can endorse, reject, settle</text><text x="542" y="356" class="t3w" text-anchor="start">✕ cannot plant or fund</text><text x="542" y="382" class="t4" text-anchor="start">peer(s) in the lab network</text><path d="M625 100 V80 H500 V76" class="ln" marker-end="url(#ar)"/><rect x="780" y="100" width="190" height="300" rx="10" class="bx bx--ink"/><rect x="780" y="100" width="190" height="44" rx="10" class="bx bx--acc"/><text x="875" y="120" class="t1c" text-anchor="middle">Corporate Green Funders</text><text x="875" y="136" class="t4c" text-anchor="middle">CorporateFundersMSP</text><text x="792" y="162" class="t3" text-anchor="start">2 participants</text><text x="792" y="182" class="t4" text-anchor="start">Aarav Menon — ESG Head, Tata Consumer</text><text x="792" y="197" class="t4" text-anchor="start">Priya Nair — CSR Lead, Infosys Foundation</text><rect x="792" y="262" width="166" height="56" rx="6" class="bx bx--mut"/><text x="875" y="282" class="t3c" text-anchor="middle">FundTokens · SettleFunding</text><text x="792" y="336" class="t3" text-anchor="start">✓ can fund and settle</text><text x="792" y="356" class="t3w" text-anchor="start">✕ cannot plant or endorse</text><text x="792" y="382" class="t4" text-anchor="start">peer(s) in the lab network</text><path d="M875 100 V80 H500 V76" class="ln" marker-end="url(#ar)"/><rect x="30" y="424" width="940" height="66" rx="10" class="bx bx--chan"/><text x="500" y="450" class="t1" text-anchor="middle">CHANNEL  greentoken-channel   —   one ledger shared by all four organisations</text><text x="500" y="472" class="t3" text-anchor="middle">chaincode: greentoken  ·  4 MSPs  ·  14 named participants  ·  peers hold identical copies</text></svg>

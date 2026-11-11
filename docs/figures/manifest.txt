@@ -1,0 +1,7 @@
+name|figure_id|caption
+fig-6-1|d1|GreenToken architecture in Hyperledger Fabric — the five components and the channel
+fig-6-2|d2|The consortium — four member organisations, one channel, one ordering service
+fig-7-1|d3|The six-phase Fabric transaction lifecycle traced through VerifyPlanting
+fig-7-2|d7|One contract, three hosts — the platform-free ChaincodeStub architecture
+fig-8-1|d6|The hash-linked block chain and the localisation of a tamper
+fig-9-1|d8|The GreenToken token state machine and invoice lifecycle

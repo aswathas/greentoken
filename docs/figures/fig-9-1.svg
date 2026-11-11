@@ -1,0 +1,130 @@
+<svg class="dg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 495" width="1000" height="495"><style>
+@page { size: A4 landscape; margin: 13mm 13mm 12mm 13mm; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+:root {
+  --paper: #FFFFFF;
+  --tint: #F4F8F5;
+  --tint2: #E6F4EC;
+  --line: #DCE8E0;
+  --ink: #12211A;
+  --dim: #48654F;
+  --faint: #75897D;
+  --accent: #1E8E4E;
+  --deep: #14663A;
+  --warn: #96650C;
+  --danger: #C0392B;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--sans); font-size: 10pt; line-height: 1.5; color: var(--ink); background: var(--paper); }
+
+@media screen {
+  html { background: #d5d5d5; }
+  body { padding: 18px 0; }
+  body > section { width: 297mm; min-height: 210mm; margin: 0 auto 18px; background: #fff;
+                   box-shadow: 0 4px 24px rgba(0,0,0,.18); padding: 13mm; overflow: hidden; }
+}
+
+.page { break-after: page; }
+.page:last-child { break-after: auto; }
+.cover { break-after: page; }
+
+h2 { font-size: 15pt; margin: 0 0 1.5mm; letter-spacing: -0.4pt; font-weight: 700; }
+p { margin: 0 0 2mm; }
+p.lead { font-size: 10.5pt; color: var(--dim); line-height: 1.5; margin-bottom: 3mm; }
+em { font-style: italic; }
+strong { font-weight: 700; }
+.mono { font-family: var(--mono); font-size: 0.94em; }
+
+.dg { width: 100%; height: 118mm; display: block; margin: 1mm 0 2.5mm; }
+.dg .bx { stroke-width: 1.4; }
+.bx--ink  { fill: #FFFFFF; stroke: #B9D2C4; }
+.bx--acc  { fill: var(--tint2); stroke: var(--accent); }
+.bx--mut  { fill: var(--tint); stroke: var(--line); }
+.bx--warn { fill: #FDF6E8; stroke: #D8A64B; }
+.bx--bad  { fill: #FDECEA; stroke: #C0392B; }
+.bx--chan { fill: #F1F8F4; stroke: #B9D2C4; stroke-dasharray: 5 3; }
+.dg .ln { stroke: #5E7D68; stroke-width: 1.6; fill: none; }
+.dg .lnacc { stroke: #1E8E4E; stroke-width: 1.8; fill: none; }
+.dg .lnbad { stroke: #C0392B; stroke-width: 1.8; fill: none; }
+.dg text { font-family: var(--sans); }
+.t1 { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.t2 { font-size: 13px; font-weight: 600; fill: var(--ink); }
+.t3 { font-size: 12px; fill: var(--dim); }
+.t3c { font-size: 12px; fill: #1B4A2E; }
+.t3w { font-size: 12px; fill: #A15C08; }
+.t3bad { font-size: 12px; fill: #A32A1C; }
+.t4 { font-size: 11px; fill: var(--faint); }
+.t4c { font-size: 11px; fill: #3F7A57; }
+.t4w { font-size: 11px; fill: #A15C08; }
+
+.cap {
+  font-size: 9.1pt; line-height: 1.44; color: var(--dim);
+  border-left: 2.5pt solid var(--accent); background: var(--tint);
+  padding: 2.4mm 3.2mm; border-radius: 0 2mm 2mm 0; margin: 0 0 2mm;
+}
+.cap strong { color: var(--ink); }
+.say {
+  font-size: 9.3pt; line-height: 1.44; color: #22402F;
+  border-left: 2.5pt solid #B7D9C3; background: #FBFDFC;
+  padding: 2.2mm 3.2mm; border-radius: 0 2mm 2mm 0; margin: 0 0 1.6mm;
+}
+.say em { color: var(--deep); }
+.say__k {
+  display: inline-block; font-size: 7pt; font-weight: 800; letter-spacing: 1.2pt;
+  text-transform: uppercase; color: var(--accent); margin-right: 2.5mm;
+}
+.legend { display: flex; gap: 6mm; font-size: 8pt; color: var(--faint); margin-top: 1mm; }
+.legend span { display: flex; align-items: center; gap: 1.5mm; }
+.sw { width: 11px; height: 11px; border-radius: 3px; display: inline-block; border: 1.2px solid; }
+.sw--ink { background: #fff; border-color: #B9D2C4; }
+.sw--acc { background: var(--tint2); border-color: var(--accent); }
+.sw--warn { background: #FDF6E8; border-color: #D8A64B; }
+.sw--mut { background: var(--tint); border-color: var(--line); }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; margin-bottom: 3mm; }
+.g2 h3 { font-size: 11pt; margin: 0 0 1.6mm; color: var(--deep); }
+ul { margin: 0; padding-left: 4.5mm; }
+li { margin-bottom: 1.2mm; font-size: 9.4pt; color: var(--dim); }
+
+.toc { margin-top: 2mm; border-top: 1pt solid var(--line); padding-top: 2.5mm; }
+.toc-row { display: flex; align-items: baseline; gap: 2mm; text-decoration: none; color: var(--ink);
+           font-size: 10pt; padding: 1.2mm 0; border-bottom: 0.5pt dotted #E4EDE7; }
+.toc-row .dots { flex: 1; border-bottom: 0.5pt dotted #C9D9CE; transform: translateY(-1.2mm); }
+.toc-row .pr { color: var(--faint); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* cover */
+.cvmast { display: flex; align-items: center; justify-content: space-between;
+          background: linear-gradient(120deg, #14382A, #1E5A3B 60%, #2A7449);
+          border-radius: 2.5mm; padding: 6mm 8mm; margin-bottom: 8mm; }
+.cvmast__word { font-size: 19pt; font-weight: 800; letter-spacing: 4pt; color: #EAF3EC; line-height: 1; }
+.cvmast__sub { font-size: 8.4pt; letter-spacing: 1.4pt; color: #A9D2BC; margin-top: 3mm; text-transform: uppercase; }
+.cvtitle { font-size: 30pt; line-height: 1.1; margin: 0 0 5mm; font-weight: 700; letter-spacing: -1pt; }
+.cvacc { color: var(--accent); }
+.cvsub { font-size: 11.5pt; line-height: 1.5; color: var(--dim); max-width: 215mm; margin: 0 0 8mm; }
+.cvmeta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; border-top: 1pt solid var(--line); padding-top: 4mm; }
+.cvmeta span { display: block; font-size: 7.4pt; text-transform: uppercase; letter-spacing: 1.2pt; color: var(--faint); font-weight: 700; }
+.cvmeta strong { display: block; font-size: 10pt; margin-top: 1mm; }
+.cvinside { margin-top: 7mm; border-top: 1pt solid var(--line); padding-top: 4mm; }
+.cvinside__h { font-size: 7.4pt; text-transform: uppercase; letter-spacing: 1.4pt; color: var(--faint); font-weight: 800; margin-bottom: 2.5mm; }
+.cvinside__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5mm; }
+.cvinside__row b { display: block; font-size: 9.6pt; color: var(--deep); margin-bottom: 1mm; }
+.cvinside__row span { display: block; font-size: 8.6pt; color: var(--dim); line-height: 1.42; }
+.cvtail { margin-top: 6mm; font-size: 13pt; font-weight: 700; letter-spacing: 0.6pt; color: var(--accent); }
+
+.dg { width: 100%; height: auto; display: block; }
+svg { background: #FFFFFF; }
+text { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+</style><rect x="0" y="0" width="1000" height="495" fill="#FFFFFF"/>
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+  <marker id="arw" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#96650C"/>
+  </marker>
+</defs>
+<rect x="40" y="40" width="190" height="66" rx="8" class="bx bx--warn"/><text x="135" y="66" class="t1" text-anchor="middle">PENDING</text><text x="135" y="88" class="t3" text-anchor="middle">awaiting review</text><rect x="400" y="30" width="210" height="80" rx="8" class="bx bx--acc"/><text x="505" y="58" class="t1" text-anchor="middle">VERIFIED</text><text x="505" y="80" class="t3" text-anchor="middle">2 orgs endorsed</text><text x="505" y="98" class="t4" text-anchor="middle">mintable · fundable</text><rect x="770" y="30" width="190" height="80" rx="8" class="bx bx--ink"/><text x="865" y="58" class="t1" text-anchor="middle">FUNDED</text><text x="865" y="80" class="t3" text-anchor="middle">in an invoice</text><text x="865" y="98" class="t4" text-anchor="middle">settlement pending</text><rect x="400" y="200" width="210" height="80" rx="8" class="bx bx--bad"/><text x="505" y="228" class="t1" text-anchor="middle">REJECTED</text><text x="505" y="250" class="t3" text-anchor="middle">terminal — nothing follows</text><text x="505" y="268" class="t4" text-anchor="middle">no re-review, no override</text><path d="M230 66 H300 V70 H396" class="lnacc" marker-end="url(#ar)"/><text x="310" y="58" class="t3" text-anchor="middle">VerifyPlanting</text><text x="310" y="92" class="t4" text-anchor="middle">by 2 distinct orgs</text><path d="M230 92 V240 H396" class="lnbad" marker-end="url(#ar)"/><text x="300" y="232" class="t3bad" text-anchor="middle">reject</text><path d="M610 70 H766" class="lnacc" marker-end="url(#ar)"/><text x="688" y="58" class="t3" text-anchor="middle">FundTokens</text><text x="688" y="92" class="t4" text-anchor="middle">by a funder</text><path d="M505 110 V196" class="lnbad" stroke-dasharray="4 3" marker-end="url(#ar)"/><text x="640" y="160" class="t3bad" text-anchor="start">no path back — rejection is terminal</text><rect x="40" y="320" width="440" height="160" rx="10" class="bx bx--ink"/><text x="60" y="348" class="t1" text-anchor="start">Invoice states</text><rect x="80" y="366" width="150" height="56" rx="8" class="bx bx--warn"/><text x="155" y="390" class="t1" text-anchor="middle">ISSUED</text><text x="155" y="410" class="t4" text-anchor="middle">basket → 1 invoice</text><rect x="290" y="366" width="150" height="56" rx="8" class="bx bx--acc"/><text x="365" y="390" class="t1" text-anchor="middle">SETTLED</text><text x="365" y="410" class="t4" text-anchor="middle">net released</text><line x1="230" y1="394" x2="286" y2="394" class="lnacc" marker-end="url(#ar)"/><text x="60" y="448" class="t3" text-anchor="start">gross − discount = net   ·   ladder 0/5/10/15% at 1/50/200/500 units</text><text x="60" y="466" class="t4" text-anchor="start">SettleFunding is granted to funders AND the auditor</text><rect x="520" y="320" width="450" height="160" rx="10" class="bx bx--mut"/><text x="540" y="348" class="t1" text-anchor="start">Who may drive which transition</text><text x="540" y="374" class="t3" text-anchor="start">PlantTree</text><text x="700" y="374" class="t3" text-anchor="start">PLANTER</text><text x="700" y="386" class="t4" text-anchor="start">creates PENDING</text><text x="540" y="400" class="t3" text-anchor="start">VerifyPlanting</text><text x="700" y="400" class="t3" text-anchor="start">VERIFIER · AUDITOR</text><text x="700" y="412" class="t4" text-anchor="start">PENDING → VERIFIED / REJECTED</text><text x="540" y="426" class="t3" text-anchor="start">FundTokens</text><text x="700" y="426" class="t3" text-anchor="start">FUNDER</text><text x="700" y="438" class="t4" text-anchor="start">VERIFIED → FUNDED</text><text x="540" y="452" class="t3" text-anchor="start">SettleFunding</text><text x="700" y="452" class="t3" text-anchor="start">FUNDER · AUDITOR</text><text x="700" y="464" class="t4" text-anchor="start">ISSUED → SETTLED</text></svg>
