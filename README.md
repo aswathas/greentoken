@@ -10,6 +10,8 @@ rather than a spreadsheet.
 
 **Live demo:** <https://greentoken-7gc.pages.dev>
 
+**Topics:** `hyperledger-fabric` · `blockchain` · `smart-contracts` · `carbon-tokens` · `react` · `typescript` · `cloudflare` · `21CSE432IT`
+
 [![Live demo](https://img.shields.io/badge/live%20demo-greentoken--7gc.pages.dev-1E8E4E?style=flat-square)](https://greentoken-7gc.pages.dev)
 [![Stack](https://img.shields.io/badge/React_18-Vite-3178C6?style=flat-square&logo=react)](https://vitejs.dev)
 [![Fabric](https://img.shields.io/badge/chaincode-Hyperledger_Fabric_v2.5-344E41?style=flat-square)](https://hyperledger-fabric.readthedocs.io)
