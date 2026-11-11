@@ -104,7 +104,7 @@ a list of components to memorise.
 
 [`GreenToken-Case-Study-21CSE435T.pdf`](https://greentoken-7gc.pages.dev/downloads/GreenToken-Case-Study-21CSE435T.pdf)
 is a 38-page case study written to the departmental template for
-**21CSE435T — Smart Contracts and Application Development**: the same A4 page
+**21CSE435T — Smart Contract**: the same A4 page
 set-up, Times New Roman, justified 1.5-spaced body, blue numbered headings,
 dark-headed tables with captions above, captioned figures, a page-numbered
 footer, and the full preliminary-pages structure (title page, own-work

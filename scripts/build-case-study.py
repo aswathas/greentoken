@@ -42,10 +42,10 @@ PAGEMAP = DOCS / "case-study-pages.json"
 # --------------------------------------------------------------------------
 # identity — change these two lines and regenerate
 # --------------------------------------------------------------------------
-STUDENT_NAME = "«STUDENT NAME»"
-STUDENT_REGNO = "«REGISTER NUMBER»"
+STUDENT_NAME = "Aswath AS"
+STUDENT_REGNO = "RA2311050010060"
 COURSE_CODE = "21CSE435T"
-COURSE_NAME = "SMART CONTRACTS AND APPLICATION DEVELOPMENT"
+COURSE_NAME = "SMART CONTRACT"
 GUIDE_NAME = "Dr. S. Ganesh Kumar"
 REPORT_TITLE = "GREENTOKEN: VERIFIABLE CARBON TOKENS ON HYPERLEDGER FABRIC"
 REPORT_SUBTITLE = "A Consortium Smart-Contract Case Study"
@@ -336,8 +336,6 @@ def title_page(doc):
          align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
     para(doc, "Under the guidance of", size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
     para(doc, GUIDE_NAME, size=13, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
-    para(doc, "Department of Computer Science and Engineering", size=11,
-         align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
     para(doc, "in partial fulfilment of the requirements for the degree of", size=11,
          align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
     para(doc, "BACHELOR OF TECHNOLOGY", size=14, bold=True,
@@ -350,9 +348,9 @@ def title_page(doc):
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.space_after = Pt(8)
         p.add_run().add_picture(str(LOGO), width=Inches(2.35))
-    para(doc, "DEPARTMENT OF COMPUTER SCIENCE AND", size=16, bold=True,
+    para(doc, "DEPARTMENT OF DATA SCIENCE AND", size=16, bold=True,
          align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
-    para(doc, "ENGINEERING", size=16, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
+    para(doc, "BUSINESS SYSTEMS", size=16, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
     para(doc, "COLLEGE OF ENGINEERING AND TECHNOLOGY", size=16, bold=True,
          align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
     para(doc, "SRM INSTITUTE OF SCIENCE AND TECHNOLOGY", size=13, bold=True,
@@ -397,7 +395,7 @@ def certificate_page(doc):
 def acknowledgements_page(doc):
     front_heading(doc, "ACKNOWLEDGEMENTS")
     body(doc, "", "I express my sincere gratitude to SRM Institute of Science and Technology and the "
-                  "Department of Computer Science and Engineering for providing the academic environment "
+                  "Department of Data Science and Business Systems for providing the academic environment "
                   "and learning resources that supported this individual case study.")
     body(doc, "", "I thank " + GUIDE_NAME + " for guidance on the academic direction and structure of the "
                   "report, for insisting that the system described here must actually run, and for the "
