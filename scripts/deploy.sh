@@ -27,6 +27,7 @@ cp dist-deliverables/GreenToken-Fabric-Diagrams.pdf               dist/downloads
 cp dist-deliverables/DEMO-CARD.pdf                                dist/downloads/
 cp dist-deliverables/GreenToken-Case-Study-21CSE435T.pdf         dist/downloads/
 cp dist-deliverables/GreenToken-Case-Study-21CSE435T.docx        dist/downloads/
+cp dist-deliverables/Hyperledger-Fabric-First-Principles.pdf      dist/downloads/
 cp docs/diagrams.html                                             dist/downloads/
 cp docs/guide.html                                                dist/downloads/
 cp docs/screenshots/*.png                                         dist/downloads/
@@ -37,7 +38,8 @@ npx wrangler pages deploy dist --project-name greentoken --branch "$BRANCH" --co
 echo
 echo "==> verifying"
 for f in GreenToken-Verifiable-Carbon-Tokens-Unit5.pptx GreenToken-Fabric-Guide.pdf \
-         GreenToken-Fabric-Diagrams.pdf DEMO-CARD.pdf GreenToken-Case-Study-21CSE435T.pdf; do
+         GreenToken-Fabric-Diagrams.pdf DEMO-CARD.pdf GreenToken-Case-Study-21CSE435T.pdf \
+         Hyperledger-Fabric-First-Principles.pdf; do
   code="$(curl -s -o /dev/null -w '%{http_code} %{size_download}' \
     "https://greentoken-7gc.pages.dev/downloads/$f")"
   echo "    $f -> $code"

@@ -53,6 +53,7 @@ Everything below is committed in this repository and downloadable directly from 
 | **Study guide** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Guide.pdf) | 30 pages · Fabric from first principles, the architecture, the demo script and 20 viva Q&A with answers |
 | **Diagram pack** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Diagrams.pdf) | 15 pages · 13 full-page diagrams mapping the project onto Fabric — the components, the six-phase lifecycle, endorsement and quorum, ledger anatomy, tamper localisation, and the honest scope |
 | **Case study report** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Case-Study-21CSE435T.pdf) · [DOCX](https://greentoken-7gc.pages.dev/downloads/GreenToken-Case-Study-21CSE435T.docx) | 38 pages · the full departmental case-study format — title page, declaration, certificate, acknowledgements, abstract, contents, ten numbered chapters, evidence register, references |
+| **First-principles course** | [PDF](https://greentoken-7gc.pages.dev/downloads/Hyperledger-Fabric-First-Principles.pdf) | 15 pages · Hyperledger Fabric taught from the ground up in the Feynman mould — start from what breaks, rebuild each idea, and land inside our own contract |
 | **Demo card** | [PDF](https://greentoken-7gc.pages.dev/downloads/DEMO-CARD.pdf) | One printable page · the whole demo on a card to hold during the presentation |
 | **Run of show** | [`docs/demo-run-of-show.md`](docs/demo-run-of-show.md) | Timed script with exact click paths and the wording for the tamper demonstration |
 | **Live demo** | <https://greentoken-7gc.pages.dev> | The running application — plant → verify → fund → settle → tamper test |
@@ -73,6 +74,31 @@ to materialise the real files locally, or
 
 to pull the deliverables *and* the screenshots from the live deployment in one
 command.
+
+### The first-principles course
+
+[`Hyperledger-Fabric-First-Principles.pdf`](https://greentoken-7gc.pages.dev/downloads/Hyperledger-Fabric-First-Principles.pdf)
+is 15 pages that teach Hyperledger Fabric the way Feynman would: no definition is
+given before the problem it solves, and every idea has to survive a plain-language
+test.
+
+Each page follows the same four beats — **The question** (what actually goes
+wrong), **First principles** (the construction, built from nothing), **The Feynman
+check** (can you say it in one sentence?), and **In GreenToken** (the same idea in
+our code, with a real number).
+
+| Part | Pages | What it teaches |
+|---|---|---|
+| The problem | 3 | Four parties, four notebooks, and what actually breaks |
+| The cryptography | 4–5 | SHA-256, the hash chain, signatures, Merkle trees — and why you need all four |
+| The machinery | 6–9 | The six components, the six-phase lifecycle, endorsement and quorum, privacy |
+| Our project | 10 | Every idea above, assembled into GreenToken |
+| Beyond | 11–13 | The v2.5 advanced shelf, the honest boundaries, and a one-page revision card |
+
+The spine of the argument: a hash chain gives you **tamper-evidence** — it tells
+you *where* history was changed — but not tamper-prevention. Only the signatures
+close that gap. Get that one distinction right and the rest of Fabric stops being
+a list of components to memorise.
 
 ### The case study report
 

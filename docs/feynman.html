@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyperledger Fabric, taught from first principles</title>
+<style>
+@page { size: A4 portrait; margin: 17mm 16mm 16mm 16mm; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+:root {
+  --paper: #FFFFFF;
+  --tint: #F4F8F5;
+  --tint2: #E9F4ED;
+  --line: #DCE8E0;
+  --ink: #12211A;
+  --dim: #48654F;
+  --faint: #75897D;
+  --accent: #1E8E4E;
+  --deep: #14663A;
+  --warn: #96650C;
+  --danger: #C0392B;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--sans); font-size: 10.4pt; line-height: 1.52;
+  color: var(--ink); background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media screen {
+  html { background: #d3d3d3; }
+  body { padding: 18px 0; }
+  body > section { width: 210mm; min-height: 297mm; margin: 0 auto 18px; background: #fff;
+                   box-shadow: 0 4px 24px rgba(0,0,0,.18); padding: 17mm 16mm; overflow: hidden; }
+}
+
+.page { break-after: page; }
+.page:last-child { break-after: auto; }
+.cover { break-after: page; }
+
+h2 { font-size: 17pt; margin: 0 0 2.5mm; letter-spacing: -0.5pt; font-weight: 700; }
+h3 { font-size: 11pt; margin: 4mm 0 1.6mm; color: var(--deep); font-weight: 700; }
+p { margin: 0 0 2.8mm; }
+p.lead { font-size: 11pt; color: var(--dim); line-height: 1.55; margin-bottom: 4mm; }
+em { font-style: italic; }
+strong, b { font-weight: 700; }
+.mono { font-family: var(--mono); font-size: 0.92em; }
+ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+li { margin-bottom: 1.6mm; }
+
+.dg { width: 100%; height: auto; display: block; margin: 2mm 0 3mm; }
+.dg .bx { stroke-width: 1.4; }
+.bx--ink { fill: #FFFFFF; stroke: #B9D2C4; }
+.bx--acc { fill: var(--tint2); stroke: var(--accent); }
+.bx--mut { fill: var(--tint); stroke: var(--line); }
+.bx--warn { fill: #FDF6E8; stroke: #D8A64B; }
+.bx--bad { fill: #FDECEA; stroke: #C0392B; }
+.dg .ln { stroke: #5E7D68; stroke-width: 1.6; fill: none; }
+.dg .lnacc { stroke: #1E8E4E; stroke-width: 1.9; fill: none; }
+.dg text { font-family: var(--sans); }
+.t1 { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.t2 { font-size: 13px; font-weight: 600; fill: var(--ink); }
+.t3 { font-size: 12px; fill: var(--dim); }
+.t3c { font-size: 12px; fill: #1B4A2E; }
+.t3w { font-size: 12px; fill: #A15C08; }
+.t4 { font-size: 11px; fill: var(--faint); }
+
+.q {
+  border-left: 3px solid var(--accent); background: var(--tint);
+  padding: 3mm 4mm; border-radius: 0 2mm 2mm 0; margin: 0 0 3mm;
+}
+.q__k { display: block; font-size: 7.4pt; font-weight: 800; letter-spacing: 1.4pt;
+         text-transform: uppercase; color: var(--accent); margin-bottom: 1.2mm; }
+.q p { margin: 0; font-size: 10.6pt; }
+
+.check {
+  border-left: 3px solid #B7D9C3; background: #FAFDFB;
+  padding: 3mm 4mm; border-radius: 0 2mm 2mm 0; margin: 3mm 0;
+}
+.check__k { display: block; font-size: 7.4pt; font-weight: 800; letter-spacing: 1.4pt;
+            text-transform: uppercase; color: var(--deep); margin-bottom: 1.2mm; }
+.check p { margin: 0; font-size: 10.2pt; color: #22402F; }
+
+.ours {
+  border-left: 3px solid #D8A64B; background: #FDF9F1;
+  padding: 3mm 4mm; border-radius: 0 2mm 2mm 0; margin: 3mm 0 0;
+}
+.ours__k { display: block; font-size: 7.4pt; font-weight: 800; letter-spacing: 1.4pt;
+            text-transform: uppercase; color: #A15C08; margin-bottom: 1.2mm; }
+.ours p { margin: 0; font-size: 10.2pt; color: #5A4A2C; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin: 3mm 0; }
+.mini { border: 1px solid var(--line); border-radius: 2mm; padding: 3.4mm; background: var(--tint); }
+.mini h3 { margin: 0 0 1.6mm; }
+.mini ol, .mini ul { margin: 0; }
+.mini li { font-size: 9.8pt; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin: 3mm 0; }
+.two .col { min-width: 0; }
+
+.path { border: 1px solid var(--line); border-radius: 2mm; padding: 3mm 3.4mm; background: #FAFDFB; margin: 3mm 0; }
+.path__k { display: block; font-size: 7.4pt; font-weight: 800; letter-spacing: 1.4pt;
+           text-transform: uppercase; color: var(--faint); margin-bottom: 2mm; }
+.path__row { display: flex; align-items: center; justify-content: space-between; }
+.path__s { font-size: 10pt; font-weight: 700; color: var(--deep); text-align: center; line-height: 1.3; }
+.path__s i { font-weight: 400; font-style: normal; font-size: 8.4pt; color: var(--faint); }
+.path__a { color: var(--accent); font-size: 12pt; }
+
+table { width: 100%; border-collapse: collapse; font-size: 9.6pt; margin: 2mm 0 3mm; }
+table.tight { font-size: 9pt; }
+table.adv td { padding: 2.2mm 2.6mm; border-bottom: 0.5pt solid var(--line); vertical-align: top; line-height: 1.4; }
+table.adv td:first-child { width: 38mm; font-weight: 700; color: var(--deep); }
+thead { display: table-header-group; }
+th { text-align: left; padding: 2mm 2.6mm; font-size: 7.6pt; text-transform: uppercase;
+     letter-spacing: 0.9pt; color: #fff; background: #12211A; font-weight: 700; }
+td { padding: 2mm 2.6mm; border-bottom: 0.5pt solid var(--line); vertical-align: top; }
+tbody tr:nth-child(even) td { background: #FAFCFA; }
+
+.advgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6mm; margin: 2mm 0 3mm; }
+.advcard { border: 1px solid var(--line); border-left: 2.5pt solid var(--accent); border-radius: 0 2mm 2mm 0;
+           padding: 2.4mm 3mm; background: var(--tint); break-inside: avoid; }
+.advcard b { display: block; font-size: 9.8pt; color: var(--deep); margin-bottom: 0.8mm; }
+.advcard span { display: block; font-size: 8.9pt; color: var(--dim); line-height: 1.4; }
+
+.toc { margin: 1mm 0 2mm; }
+.tocrow { display: flex; align-items: baseline; gap: 2.4mm; padding: 0.7mm 0;
+          border-bottom: 0.5pt dotted #E4EDE7; font-size: 9.4pt; }
+.tocn { flex: 0 0 6mm; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.toct { flex: 1; color: var(--ink); }
+.tocp { color: var(--faint); font-size: 8.4pt; }
+
+.pgnum {
+  font-size: 7.6pt; font-weight: 800; letter-spacing: 1.6pt; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.6mm;
+}
+
+.sumgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 7mm; margin: 3mm 0 4mm; }
+.sum { border-left: 2.5pt solid var(--accent); padding: 0 0 0 3.2mm; break-inside: avoid; }
+.sum b { display: block; font-size: 10pt; color: var(--deep); margin-bottom: 0.9mm; }
+.sum span { display: block; font-size: 9.2pt; color: var(--dim); line-height: 1.44; }
+
+pre.code { font-family: var(--mono); font-size: 8.6pt; background: var(--tint);
+            border-left: 2.5pt solid var(--accent); padding: 2.4mm 3.2mm; margin: 2mm 0 3mm; }
+
+/* cover */
+.cover-art { margin-bottom: 7mm; }
+.cover-title { font-size: 30pt; line-height: 1.1; margin: 0 0 6mm; font-weight: 700; letter-spacing: -1pt; }
+.cvacc { color: var(--accent); }
+.cover-sub { font-size: 11.6pt; line-height: 1.52; color: var(--dim); max-width: 165mm; margin: 0 0 9mm; }
+.cover-meta { border-top: 1pt solid var(--line); padding-top: 4mm; }
+.cover-meta div { display: flex; gap: 5mm; padding: 1.8mm 0; border-bottom: 0.5pt solid var(--line); }
+.cover-meta span { flex: 0 0 26mm; font-size: 7.6pt; text-transform: uppercase; letter-spacing: 1.2pt;
+                   color: var(--faint); font-weight: 700; padding-top: 0.6mm; }
+.cover-meta strong { font-weight: 600; font-size: 10pt; }
+.cover-foot { margin-top: 8mm; font-size: 10.4pt; color: var(--accent); font-style: italic; }
+</style>
+</head>
+<body>
+<section class="page cover" id="cover">
+
+<div class="cover-art">
+  <svg viewBox="0 0 120 120" width="86" height="86" role="img" aria-label="A tree with a token above it">
+    <path d="M60 106 V64" stroke="#8FD9AE" stroke-width="7" stroke-linecap="round"/>
+    <path d="M60 80 L40 66 M60 92 L82 76" stroke="#8FD9AE" stroke-width="5" stroke-linecap="round"/>
+    <path d="M60 62 C38 62 23 48 23 32 C23 18 34 8 47 7 C54 -5 66 -9 76 -4 C89 0 97 11 96 23
+             C105 28 109 38 106 47 C102 58 87 62 76 59 Z" fill="#37A869"/>
+    <path d="M34 106 H86" stroke="#8FD9AE" stroke-width="6" stroke-linecap="round"/>
+    <g transform="translate(60,22)">
+      <polygon points="0,-15 13,-7 13,7 0,15 -13,7 -13,-7" fill="none" stroke="#8FD9AE" stroke-width="2.4"/>
+      <path d="M-5 0 L-1 4.5 L6 -4" fill="none" stroke="#8FD9AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+</div>
+<h1 class="cover-title">Hyperledger Fabric,<br><span class="cvacc">taught from first principles</span></h1>
+<p class="cover-sub">Fifteen pages that rebuild Hyperledger Fabric from the ground up — starting from
+what actually goes wrong when four organisations try to share a record — and end inside our own
+GreenToken contract. Written in the Feynman mould: no definition is given before the problem it
+solves, and every idea has to survive a plain-language test.</p>
+<div class="cover-meta">
+  <div><span>Companion to</span><strong>21CSE435T — Smart Contracts and Application Development</strong></div>
+  <div><span>Builds on</span><strong>GreenToken — verifiable carbon tokens</strong></div>
+  <div><span>Live demo</span><strong class="mono">greentoken-7gc.pages.dev</strong></div>
+</div>
+<p class="cover-foot">"If you can't explain it to a freshman, you don't really understand it."</p>
+
+</section>
+<section class="page" id="howto">
+<div class="pgnum">Before we begin</div>
+<p class="lead">Feynman had a rule for checking understanding, and it is the spine of this document. You do not understand a thing until you can rebuild it from the ground up, out loud, to somebody who has never heard of it. Memorising the vocabulary is not the same as knowing the idea, and the vocabulary is much easier to fake.</p>
+<div class="grid2">
+<div class="mini">
+<h3>The four moves</h3>
+<ol><li><b>Name the problem.</b> Never start with a definition. Start with what breaks.</li><li><b>Ask what you already know.</b> Build the new idea out of familiar material.</li><li><b>Try it.</b> Work the thing through, and see where it stops making sense.</li><li><b>Go back to step one.</b> When it breaks, the problem was mis-stated. Fix the statement.</li></ol>
+</div>
+<div class="mini">
+<h3>What each page gives you</h3>
+<ul><li><b>The question</b> — the problem this idea exists to solve.</li><li><b>First principles</b> — the construction, built from nothing.</li><li><b>The Feynman check</b> — can you say it in one sentence?</li><li><b>In GreenToken</b> — the same idea, in our code, with a real number.</li></ul>
+</div>
+</div>
+<div class="path">
+<span class="path__k">The path</span>
+<div class="path__row">
+<span class="path__s">Part 1<br><i>the problem</i></span>
+<span class="path__a">&rarr;</span>
+<span class="path__s">Part 2<br><i>the cryptography</i></span>
+<span class="path__a">&rarr;</span>
+<span class="path__s">Part 3<br><i>the machinery</i></span>
+<span class="path__a">&rarr;</span>
+<span class="path__s">Part 4<br><i>our project</i></span>
+<span class="path__a">&rarr;</span>
+<span class="path__s">Part 5<br><i>beyond</i></span>
+</div>
+</div>
+<div class="q"><span class="q__k">The question</span>So why build a blockchain at all? Four organisations already exist, they already have databases, and this is a solved problem. What exactly is broken?</div>
+<p>That question is the whole of Part 1, and it is worth sitting with, because most blockchain explanations begin by assuming the answer.</p>
+<h3>What is on each page</h3>
+<div class="toc"><div class="tocrow"><span class="tocn">1</span><span class="toct">What actually goes wrong</span><span class="tocp">the problem</span></div><div class="tocrow"><span class="tocn">2</span><span class="toct">The fingerprint: SHA-256</span><span class="tocp">the cryptography</span></div><div class="tocrow"><span class="tocn">3</span><span class="toct">The chain: why one fingerprint is not enough</span><span class="tocp">the cryptography</span></div><div class="tocrow"><span class="tocn">4</span><span class="toct">The signature: making it unforgeable</span><span class="tocp">the cryptography</span></div><div class="tocrow"><span class="tocn">5</span><span class="toct">The Merkle tree: proving one thing inside a big set</span><span class="tocp">the cryptography</span></div><div class="tocrow"><span class="tocn">6</span><span class="toct">The parts, and what breaks without each</span><span class="tocp">the machinery</span></div><div class="tocrow"><span class="tocn">7</span><span class="toct">The journey of one transaction</span><span class="tocp">the machinery</span></div><div class="tocrow"><span class="tocn">8</span><span class="toct">Endorsement, quorum and determinism</span><span class="tocp">the machinery</span></div><div class="tocrow"><span class="tocn">9</span><span class="toct">Privacy, and the choice not to use it</span><span class="tocp">the machinery</span></div><div class="tocrow"><span class="tocn">10</span><span class="toct">Now put it all together: our project</span><span class="tocp">our project</span></div><div class="tocrow"><span class="tocn">11</span><span class="toct">The advanced shelf: what you meet next</span><span class="tocp">beyond</span></div><div class="tocrow"><span class="tocn">12</span><span class="toct">Where the edges are</span><span class="tocp">beyond</span></div><div class="tocrow"><span class="tocn">13</span><span class="toct">The whole thing on one page</span><span class="tocp">beyond</span></div></div>
+</section>
+<section class="page" id="p1">
+<div class="pgnum">Part 1 — the problem</div>
+<h2>What actually goes wrong</h2>
+<svg class="dg" viewBox="0 0 1000 410" role="img" aria-label="Four organisations with separate notebooks and the three failures that follow">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<text x="20" y="26" class="t1" text-anchor="start">Four organisations, four private notebooks</text><rect x="20" y="44" width="215" height="66" rx="8" class="bx bx--ink"/><text x="127" y="70" class="t1" text-anchor="middle">Forest Dept</text><text x="127" y="92" class="t4" text-anchor="middle">keeps its own notebook</text><rect x="265" y="44" width="215" height="66" rx="8" class="bx bx--ink"/><text x="372" y="70" class="t1" text-anchor="middle">Auditor</text><text x="372" y="92" class="t4" text-anchor="middle">keeps its own notebook</text><rect x="510" y="44" width="215" height="66" rx="8" class="bx bx--ink"/><text x="617" y="70" class="t1" text-anchor="middle">Planters</text><text x="617" y="92" class="t4" text-anchor="middle">keeps its own notebook</text><rect x="755" y="44" width="215" height="66" rx="8" class="bx bx--ink"/><text x="862" y="70" class="t1" text-anchor="middle">Funders</text><text x="862" y="92" class="t4" text-anchor="middle">keeps its own notebook</text><text x="500" y="190" class="t1" text-anchor="middle">?</text><path d="M127 110 V150 H440.0" class="ln"/><path d="M372 110 V150 H480.0" class="ln"/><path d="M617 110 V150 H520.0" class="ln"/><path d="M862 110 V150 H560.0" class="ln"/><rect x="370" y="168" width="260" height="56" rx="8" class="bx bx--bad"/><text x="500" y="192" class="t1" text-anchor="middle">No shared truth</text><text x="500" y="212" class="t4" text-anchor="middle">whose notebook is right?</text><rect x="20" y="246" width="470" height="150" rx="10" class="bx bx--warn"/><text x="40" y="272" class="t2" text-anchor="start">What goes wrong</text><text x="40" y="296" class="t3w" text-anchor="start">✕  The planter sells the same trees twice</text><text x="40" y="318" class="t3w" text-anchor="start">✕  The department quietly changes its approval</text><text x="40" y="340" class="t3w" text-anchor="start">✕  The buyer cannot check what they were told</text><text x="40" y="362" class="t3w" text-anchor="start">✕  Nobody can prove who changed what</text><rect x="510" y="246" width="470" height="150" rx="10" class="bx bx--acc"/><text x="530" y="272" class="t2" text-anchor="start">What each failure needs</text><text x="530" y="296" class="t3c" text-anchor="start">✓  a shared, append-only record</text><text x="530" y="318" class="t3c" text-anchor="start">✓  evidence nobody can quietly alter</text><text x="530" y="340" class="t3c" text-anchor="start">✓  a copy every member can check alone</text><text x="530" y="362" class="t3c" text-anchor="start">✓  blame that survives</text></svg>
+<div class="q"><span class="q__k">The question</span>Four organisations each keep their own record of which tree plantings are real. What is actually broken, and what would fix it?</div>
+<p>Nothing, at first glance — until somebody is dishonest or careless. The planter submits the same photograph twice. The department revises an approval. The buyer receives a summary and cannot check it against anything. Each of these is a <em>trust</em> failure, not a technology failure, and that observation matters: no database fixes it, because in a shared database one organisation owns the truth and the other three have to believe the owner.</p>
+<p>So the requirement is sharper than \u201cshare a database\u201d. It is: <b>a record that every member holds a copy of, that can only be added to, that cannot be altered without the alteration being detectable by anyone who holds a copy, and that shows who did what.</b> Every remaining idea in this document is a different answer to one clause of that sentence.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>A blockchain is a ledger several organisations share and that nobody can quietly rewrite, because every record is cryptographically linked to the one before it and the rules for changing it are enforced by code rather than by trust.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>GreenToken's four parties are exactly this picture: a planters association, a state forest department, an independent auditor and a corporate funder, each of whom would otherwise keep their own spreadsheet of which plantings count.</p></div>
+</section>
+<section class="page" id="p2">
+<div class="pgnum">Part 2 — the cryptography</div>
+<h2>The fingerprint: SHA-256</h2>
+<svg class="dg" viewBox="0 0 1000 300" role="img" aria-label="A photograph is passed through SHA-256 and produces a fixed 64-character fingerprint">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<rect x="40" y="40" width="190" height="120" rx="8" class="bx bx--ink"/><text x="135" y="78" class="t2" text-anchor="middle">a photograph</text><text x="135" y="102" class="t3" text-anchor="middle">2,481,193 bytes</text><text x="135" y="126" class="t4" text-anchor="middle">no meaning, no order</text><path d="M240 100 H330" class="lnacc"/><rect x="340" y="40" width="200" height="120" rx="8" class="bx bx--acc"/><text x="440" y="70" class="t1" text-anchor="middle">SHA-256</text><text x="440" y="94" class="t3" text-anchor="middle">a machine that</text><text x="440" y="114" class="t3" text-anchor="middle">shakes the bytes</text><text x="440" y="134" class="t4" text-anchor="middle">into 64 hex characters</text><path d="M550 100 H640" class="lnacc"/><rect x="650" y="40" width="310" height="120" rx="8" class="bx bx--mut"/><text x="805" y="76" class="t2" text-anchor="middle">3a9f…c41b</text><text x="805" y="100" class="t3" text-anchor="middle">64 characters. Always.</text><text x="805" y="124" class="t4" text-anchor="middle">Same input, same output, forever.</text><rect x="40" y="190" width="920" height="92" rx="8" class="bx bx--ink"/><text x="60" y="216" class="t2" text-anchor="start">Three properties, and why each one earns its place</text><text x="60" y="244" class="t3c" text-anchor="start">Deterministic</text><text x="60" y="262" class="t4" text-anchor="start">the same bytes always give the same</text><text x="60" y="275" class="t4" text-anchor="start">fingerprint, on every machine</text><text x="360" y="244" class="t3c" text-anchor="start">One-way</text><text x="360" y="262" class="t4" text-anchor="start">you cannot run the fingerprint backwards to</text><text x="360" y="275" class="t4" text-anchor="start">recover the photograph</text><text x="660" y="244" class="t3c" text-anchor="start">Collision-resistant</text><text x="660" y="262" class="t4" text-anchor="start">two different photographs cannot both give</text><text x="660" y="275" class="t4" text-anchor="start">this fingerprint</text></svg>
+<div class="q"><span class="q__k">The question</span>We want to put a photograph on a shared record without putting a four-megabyte file there. What do we write instead, and why is a digest enough?</div>
+<p>We write its <b>fingerprint</b>: 64 hexadecimal characters that stand in for the whole file. The important point is not that the fingerprint is short — it is what the fingerprint <em>commits to</em>. Once the fingerprint is on the shared record, nobody can later swap in a different photograph, because the different photograph has a different fingerprint, and the fingerprint on the record will not match it.</p>
+<p>Notice also what a hash is <em>not</em>. It is not encryption. It does not hide anything: anyone holding the photograph can confirm the fingerprint, and anyone holding only the fingerprint learns nothing about the photograph. That is exactly what a public registry needs — proof of identity, not secrecy.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>A hash is a one-way fingerprint. It proves that this data is the same data you signed, and it conceals nothing about the data itself.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>GreenToken hashes the photo bytes <em>and</em> the geo payload — latitude, longitude and accuracy together — so that changing the accuracy figure changes the hash. The photo itself never leaves the planter's phone.</p></div>
+</section>
+<section class="page" id="p3">
+<div class="pgnum">Part 2 — the cryptography</div>
+<h2>The chain: why one fingerprint is not enough</h2>
+<svg class="dg" viewBox="0 0 1000 380" role="img" aria-label="Blocks linked by fingerprint, and the cascade when an earlier block is altered">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<rect x="40" y="60" width="250" height="130" rx="8" class="bx bx--ink"/><text x="165" y="90" class="t1" text-anchor="middle">Block 1</text><text x="60" y="116" class="t3" text-anchor="start">transactions</text><text x="60" y="138" class="t3" text-anchor="start">merkleRoot  a91f…</text><text x="60" y="160" class="t3" text-anchor="start">prevHash  0000…</text><rect x="350" y="60" width="250" height="130" rx="8" class="bx bx--ink"/><text x="475" y="90" class="t1" text-anchor="middle">Block 2</text><text x="370" y="116" class="t3" text-anchor="start">transactions</text><text x="370" y="138" class="t3" text-anchor="start">merkleRoot  a91f…</text><text x="370" y="160" class="t3" text-anchor="start">prevHash  7d03…</text><path d="M290 125 H342" class="ln"/><rect x="660" y="60" width="250" height="130" rx="8" class="bx bx--ink"/><text x="785" y="90" class="t1" text-anchor="middle">Block 3</text><text x="680" y="116" class="t3" text-anchor="start">transactions</text><text x="680" y="138" class="t3" text-anchor="start">merkleRoot  a91f…</text><text x="680" y="160" class="t3" text-anchor="start">prevHash  7d03…</text><path d="M600 125 H652" class="ln"/><text x="500" y="225" class="t3" text-anchor="middle">each block carries the previous block's fingerprint</text><rect x="40" y="250" width="440" height="110" rx="8" class="bx bx--warn"/><text x="60" y="276" class="t2" text-anchor="start">Change one transaction in block 2</text><text x="60" y="298" class="t4" text-anchor="start">block 2's fingerprint changes, so block 3's prevHash is</text><text x="60" y="313" class="t4" text-anchor="start">now wrong, so block 3's fingerprint changes, and so on</text><text x="60" y="328" class="t4" text-anchor="start">to the tip.</text><rect x="520" y="250" width="440" height="110" rx="8" class="bx bx--bad"/><text x="540" y="276" class="t2" text-anchor="start">But wait</text><text x="540" y="298" class="t4" text-anchor="start">an attacker who controls the database could simply</text><text x="540" y="313" class="t4" text-anchor="start">recompute every fingerprint, and the chain would look</text><text x="540" y="328" class="t4" text-anchor="start">perfect again.</text></svg>
+<div class="q"><span class="q__k">The question</span>If we store one fingerprint per block, an attacker who can rewrite the database could recompute all the fingerprints and hide the change. So what stops them?</div>
+<p>Nothing yet — and this is exactly the point Feynman would insist on. A hash chain gives you <em>tamper-evidence</em>, not <em>tamper-prevention</em>. It means an alteration cannot be hidden <em>without being noticed</em>. It does not mean an alteration cannot be made.</p>
+<p>So we have learned something precise and useful: <b>the hash chain tells you <em>where</em> the history was changed. Something else has to make it impossible to change it in the first place.</b> That something else is on the next page, and it is the last piece of the cryptography.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>A hash chain does not stop you cheating. It guarantees that cheating leaves a scar that any holder of a copy can find.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>GreenToken's verifier does exactly this and nothing more: it walks from the genesis block forward, recomputing every hash, and reports the <em>first</em> block that disagrees. Then it restores by rebuilding the chain from the stored transactions.</p></div>
+</section>
+<section class="page" id="p4">
+<div class="pgnum">Part 2 — the cryptography</div>
+<h2>The signature: making it unforgeable</h2>
+<svg class="dg" viewBox="0 0 1000 440" role="img" aria-label="A block header signed by the orderer, and why recomputing hashes is not enough">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<rect x="30" y="40" width="250" height="110" rx="8" class="bx bx--ink"/><text x="155" y="74" class="t2" text-anchor="middle">Block header</text><text x="155" y="98" class="t3" text-anchor="middle">prevHash · merkleRoot</text><text x="155" y="120" class="t3" text-anchor="middle">number · timestamp</text><rect x="350" y="40" width="250" height="110" rx="8" class="bx bx--acc"/><text x="475" y="74" class="t1" text-anchor="middle">Orderer signs it</text><text x="475" y="98" class="t3" text-anchor="middle">ECDSA P-256</text><text x="475" y="120" class="t4" text-anchor="middle">private key never leaves</text><path d="M290 95 H340" class="lnacc"/><rect x="670" y="40" width="300" height="110" rx="8" class="bx bx--mut"/><text x="820" y="74" class="t2" text-anchor="middle">signature travels with it</text><text x="820" y="98" class="t3" text-anchor="middle">anyone can verify</text><text x="820" y="120" class="t4" text-anchor="middle">nobody can forge it</text><path d="M610 95 H660" class="lnacc"/><rect x="30" y="185" width="940" height="120" rx="8" class="bx bx--ink"/><text x="50" y="212" class="t2" text-anchor="start">Now the attacker is stuck, and here is precisely why</text><text x="56" y="240" class="t3" text-anchor="start">They can still recompute every hash — that was never the defence.</text><text x="56" y="259" class="t3" text-anchor="start">→ But the new block header needs the orderer's signature over it.</text><text x="56" y="278" class="t3" text-anchor="start">→ And the altered transaction needs each endorser's signature over it.</text><text x="56" y="297" class="t3" text-anchor="start">→ Neither can be produced without the matching private keys.</text><rect x="30" y="330" width="940" height="90" rx="8" class="bx bx--acc"/><text x="50" y="358" class="t2" text-anchor="start">The division of labour</text><text x="56" y="382" class="t3c" text-anchor="start">Hashes  →  tell you WHERE the history was changed.</text><text x="56" y="404" class="t3c" text-anchor="start">Signatures  →  make it IMPOSSIBLE to change the history unnoticed.</text></svg>
+<div class="q"><span class="q__k">The question</span>An attacker can recompute every hash in the chain. What is the one thing they still cannot do?</div>
+<p>They cannot produce a <b>valid signature</b>. A digital signature is made with a private key and checked with a public key. The private key never leaves the machine that holds it, so somebody else can check the signature but nobody else can create one. In GreenToken the ordering service signs each block header, and each reviewer signs the endorsement they give.</p>
+<p>This is the point where the two halves of the design snap together. <b>The hash chain is what makes a tamper localise itself; the signatures are what make a tamper impossible to hide.</b> Neither is sufficient alone. Remove the signatures and a clever operator rewrites history consistently. Remove the chain and a tamperer can rewrite one block without touching the others, and nobody can tell which blocks were affected.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>Hashes tell you where history was changed. Signatures make it impossible to change history without being caught. You need both.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>Every block in GreenToken carries the orderer's ECDSA P-256 signature, and every endorsement carries the reviewer's. That is why the tamper test can say <em>which</em> field was altered and not merely that something was.</p></div>
+</section>
+<section class="page" id="p5">
+<div class="pgnum">Part 2 — the cryptography</div>
+<h2>The Merkle tree: proving one thing inside a big set</h2>
+<svg class="dg" viewBox="0 0 1000 400" role="img" aria-label="A Merkle tree collapsing transaction fingerprints to a single root">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<text x="140" y="40" class="t3" text-anchor="middle">tx0</text><text x="300" y="40" class="t3" text-anchor="middle">tx1</text><text x="460" y="40" class="t3" text-anchor="middle">tx2</text><text x="620" y="40" class="t3" text-anchor="middle">tx3</text><rect x="94" y="60" width="92" height="30" rx="5" class="bx bx--acc"/><text x="140" y="80" class="t3c" text-anchor="middle">H(tx)</text><rect x="254" y="60" width="92" height="30" rx="5" class="bx bx--acc"/><text x="300" y="80" class="t3c" text-anchor="middle">H(tx)</text><rect x="414" y="60" width="92" height="30" rx="5" class="bx bx--acc"/><text x="460" y="80" class="t3c" text-anchor="middle">H(tx)</text><rect x="574" y="60" width="92" height="30" rx="5" class="bx bx--acc"/><text x="620" y="80" class="t3c" text-anchor="middle">H(tx)</text><path d="M140 90 L220 130 M300 90 L220 130 M300 90 L380 130 M460 90 L380 130 M460 90 L540 130 M620 90 L540 130" class="ln"/><rect x="175" y="130" width="90" height="30" rx="5" class="bx bx--acc"/><rect x="335" y="130" width="90" height="30" rx="5" class="bx bx--acc"/><rect x="495" y="130" width="90" height="30" rx="5" class="bx bx--acc"/><text x="220" y="150" class="t3c" text-anchor="middle">H(H0|H1)</text><text x="380" y="150" class="t3c" text-anchor="middle">H(H2|H3)</text><text x="540" y="150" class="t3c" text-anchor="middle">…</text><path d="M220 160 L300 200 M380 160 L300 200" class="ln"/><rect x="255" y="200" width="90" height="30" rx="5" class="bx bx--ink"/><text x="300" y="220" class="t3c" text-anchor="middle">root</text><text x="300" y="258" class="t3" text-anchor="middle">one value that commits to every transaction in the block</text><rect x="700" y="40" width="270" height="190" rx="8" class="bx bx--acc"/><text x="835" y="68" class="t2" text-anchor="middle">The point</text><text x="720" y="96" class="t4" text-anchor="start">To prove tx2 is in the block, you</text><text x="720" y="111" class="t4" text-anchor="start">hand over tx3 and the root. The</text><text x="720" y="126" class="t4" text-anchor="start">verifier recomputes two hashes</text><text x="720" y="141" class="t4" text-anchor="start">instead of shipping the whole</text><text x="720" y="156" class="t4" text-anchor="start">block.</text><text x="720" y="170" class="t4" text-anchor="start">Proof size grows with the log of</text><text x="720" y="185" class="t4" text-anchor="start">the block size, not with the block</text><text x="720" y="200" class="t4" text-anchor="start">size itself.</text><rect x="30" y="280" width="940" height="96" rx="8" class="bx bx--ink"/><text x="50" y="308" class="t2" text-anchor="start">Without a Merkle root you would have two bad choices</text><text x="56" y="334" class="t3w" text-anchor="start">✕  Store every transaction separately, so every block needs its own hash per transaction — the header becomes huge.</text><text x="56" y="358" class="t3w" text-anchor="start">✕  Hash the whole block as one blob, so to check one transaction you need the whole block — no proof at all.</text></svg>
+<div class="q"><span class="q__k">The question</span>If a block header holds only one value, how does that single value let someone check that one particular transaction is inside the block?</div>
+<p>By building a <b>Merkle tree</b>: hash the transactions in pairs, hash those results in pairs, and keep going until one value is left. That single value — the root — commits to every transaction in the block, because changing any transaction changes its leaf, which changes every hash above it, which changes the root.</p>
+<p>The payoff is that a proof is small. To show that tx2 is in the block, you supply tx3 and the root, and the verifier recomputes two hashes. You never have to hand over the whole block, which matters when the block is large and the counterparty is a stranger.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>A Merkle root is a fingerprint of a fingerprint of a fingerprint — and it lets you prove one small thing without showing the whole big thing.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>Each GreenToken block stores a Merkle root over its transaction hashes, and the Ledger Explorer lets you open any block and see exactly which transactions it contains and what signed them.</p></div>
+</section>
+<section class="page" id="p6">
+<div class="pgnum">Part 3 — the machinery</div>
+<h2>The parts, and what breaks without each</h2>
+<svg class="dg" viewBox="0 0 1000 400" role="img" aria-label="The six Fabric components with a plain-language analogy for each">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<rect x="25" y="40" width="300" height="155" rx="9" class="bx bx--ink"/><rect x="25" y="40" width="300" height="40" rx="9" class="bx bx--acc"/><text x="175" y="66" class="t1c" text-anchor="middle">MSP</text><text x="41" y="106" class="t2" text-anchor="start">passport office</text><text x="41" y="132" class="t4" text-anchor="start">one organisation's identity directory: who</text><text x="41" y="146" class="t4" text-anchor="start">holds which certificate, and what they may</text><text x="41" y="160" class="t4" text-anchor="start">do</text><rect x="345" y="40" width="300" height="155" rx="9" class="bx bx--ink"/><rect x="345" y="40" width="300" height="40" rx="9" class="bx bx--acc"/><text x="495" y="66" class="t1c" text-anchor="middle">Channel</text><text x="361" y="106" class="t2" text-anchor="start">private meeting room</text><text x="361" y="132" class="t4" text-anchor="start">one shared ledger plus its ordering</text><text x="361" y="146" class="t4" text-anchor="start">service, and the rules that govern them</text><rect x="665" y="40" width="300" height="155" rx="9" class="bx bx--ink"/><rect x="665" y="40" width="300" height="40" rx="9" class="bx bx--acc"/><text x="815" y="66" class="t1c" text-anchor="middle">Peer</text><text x="681" y="106" class="t2" text-anchor="start">the office that keeps the record</text><text x="681" y="132" class="t4" text-anchor="start">holds the block history and the current</text><text x="681" y="146" class="t4" text-anchor="start">values, runs the chaincode, signs</text><text x="681" y="160" class="t4" text-anchor="start">approvals</text><rect x="25" y="215" width="300" height="155" rx="9" class="bx bx--ink"/><rect x="25" y="215" width="300" height="40" rx="9" class="bx bx--acc"/><text x="175" y="241" class="t1c" text-anchor="middle">Orderer</text><text x="41" y="281" class="t2" text-anchor="start">the postman</text><text x="41" y="307" class="t4" text-anchor="start">puts transactions in order and posts the</text><text x="41" y="321" class="t4" text-anchor="start">blocks. Never checks whether they are</text><text x="41" y="335" class="t4" text-anchor="start">correct</text><rect x="345" y="215" width="300" height="155" rx="9" class="bx bx--ink"/><rect x="345" y="215" width="300" height="40" rx="9" class="bx bx--acc"/><text x="495" y="241" class="t1c" text-anchor="middle">Chaincode</text><text x="361" y="281" class="t2" text-anchor="start">the rulebook</text><text x="361" y="307" class="t4" text-anchor="start">the business logic. Must give the same</text><text x="361" y="321" class="t4" text-anchor="start">answer every time it is asked</text><rect x="665" y="215" width="300" height="155" rx="9" class="bx bx--ink"/><rect x="665" y="215" width="300" height="40" rx="9" class="bx bx--acc"/><text x="815" y="241" class="t1c" text-anchor="middle">Gateway</text><text x="681" y="281" class="t2" text-anchor="start">the front desk</text><text x="681" y="307" class="t4" text-anchor="start">one door for the client to submit, query,</text><text x="681" y="321" class="t4" text-anchor="start">wait for commit and listen for events</text></svg>
+<div class="q"><span class="q__k">The question</span>With the cryptography understood, the vocabulary finally makes sense. What is each part actually for?</div>
+<p>Here is the whole of Hyperledger Fabric in six cards. The left column is the official name; the middle column is what it is like; the right column is what it does. If you remember only one thing about each, remember the analogy — the official name is just the label the engineers agreed on.</p>
+<p>Two of these deserve a sentence each. The <b>orderer</b> is the one everybody mis-frames: it is not a judge and not a validator, it is a postman. It decides <em>sequence</em>, never <em>meaning</em>. And the <b>channel</b> is simultaneously the unit of privacy and the unit of governance, because a channel configuration transaction itself records who is a member and which endorsement rules apply.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>MSP is passports, channel is the room, peer is the office, orderer is the postman, chaincode is the rulebook, gateway is the front desk.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>GreenToken uses all six. Four organisations, each with its own MSP, share one channel; each runs a peer; one ordering service, the Consortium Ordering Service, sequences the blocks; the chaincode is the ten-function contract; and the Gateway is what the React front end talks to.</p></div>
+</section>
+<section class="page" id="p7">
+<div class="pgnum">Part 3 — the machinery</div>
+<h2>The journey of one transaction</h2>
+<svg class="dg" viewBox="0 0 1000 410" role="img" aria-label="The six phases of a Fabric transaction from proposal to notification">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<rect x="25" y="50" width="145" height="150" rx="8" class="bx bx--ink"/><text x="97" y="78" class="t1" text-anchor="middle">1.  Proposal</text><text x="37" y="106" class="t3" text-anchor="start">the client asks</text><text x="37" y="130" class="t4" text-anchor="start">a function and its</text><text x="37" y="143" class="t4" text-anchor="start">arguments</text><path d="M171 125 H183" class="ln"/><rect x="187" y="50" width="145" height="150" rx="8" class="bx bx--acc"/><text x="259" y="78" class="t1" text-anchor="middle">2.  Endorsement</text><text x="199" y="106" class="t3" text-anchor="start">peers run the code</text><text x="199" y="130" class="t4" text-anchor="start">each returns a signed</text><text x="199" y="143" class="t4" text-anchor="start">read+write set</text><path d="M333 125 H345" class="ln"/><rect x="349" y="50" width="145" height="150" rx="8" class="bx bx--ink"/><text x="421" y="78" class="t1" text-anchor="middle">3.  Ordering</text><text x="361" y="106" class="t3" text-anchor="start">the postman sequences</text><text x="361" y="130" class="t4" text-anchor="start">endorsed transactions</text><text x="361" y="143" class="t4" text-anchor="start">into a block</text><path d="M495 125 H507" class="ln"/><rect x="511" y="50" width="145" height="150" rx="8" class="bx bx--acc"/><text x="583" y="78" class="t1" text-anchor="middle">4.  Validation</text><text x="523" y="106" class="t3" text-anchor="start">every peer checks</text><text x="523" y="130" class="t4" text-anchor="start">enough signatures?</text><text x="523" y="143" class="t4" text-anchor="start">read set still</text><text x="523" y="156" class="t4" text-anchor="start">current?</text><path d="M657 125 H669" class="ln"/><rect x="673" y="50" width="145" height="150" rx="8" class="bx bx--ink"/><text x="745" y="78" class="t1" text-anchor="middle">5.  Commit</text><text x="685" y="106" class="t3" text-anchor="start">peers append</text><text x="685" y="130" class="t4" text-anchor="start">history is now</text><text x="685" y="143" class="t4" text-anchor="start">permanent</text><path d="M819 125 H831" class="ln"/><rect x="835" y="50" width="145" height="150" rx="8" class="bx bx--ink"/><text x="907" y="78" class="t1" text-anchor="middle">6.  Notification</text><text x="847" y="106" class="t3" text-anchor="start">the client is told</text><text x="847" y="130" class="t4" text-anchor="start">events and commit</text><text x="847" y="143" class="t4" text-anchor="start">status</text><rect x="25" y="225" width="950" height="80" rx="9" class="bx bx--warn"/><text x="45" y="252" class="t2" text-anchor="start">The bit that surprises everyone</text><text x="45" y="276" class="t4" text-anchor="start">The code runs at step 2, not step 5. By the time a transaction is committed, the business logic has already executed and the</text><text x="45" y="291" class="t4" text-anchor="start">peers are only checking that the right people agreed and that nothing changed underneath.</text><rect x="25" y="325" width="950" height="70" rx="9" class="bx bx--ink"/><text x="45" y="350" class="t2" text-anchor="start">And that is exactly why chaincode must be deterministic</text><text x="45" y="374" class="t4" text-anchor="start">If two peers could run the same code and get different answers, the network would have two truths and no way to choose between</text><text x="45" y="389" class="t4" text-anchor="start">them.</text></svg>
+<div class="q"><span class="q__k">The question</span>A client wants to change something on the shared ledger. What actually happens, and in what order?</div>
+<p>Six phases, and each one happens on a different component. The client proposes. Peers run the chaincode and sign what they would write. The ordering service sequences those signed results into a block. Every peer then independently validates that block. Peers that accept it append it and update their copy of the state. Finally the client is told what happened.</p>
+<p>But look again at where the code runs: at step <b>2</b>. That is the structural reason for every strange restriction you will meet in Fabric chaincode — no clock, no randomness, no network calls. If two peers could run the same code and reach different answers, the network would have two truths and no way to choose between them. Determinism is not pedantry; it is the load-bearing wall.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>Six phases, and the code runs at phase two. That is why chaincode cannot read the clock.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>A GreenToken endorsement travels exactly this path: the Forest Department proposes, the Forest Department and the Auditor both endorse, the orderer sequences, every peer validates, the peers commit, and the event reaches the dashboard's live event panel.</p></div>
+</section>
+<section class="page" id="p8">
+<div class="pgnum">Part 3 — the machinery</div>
+<h2>Endorsement, quorum and determinism</h2>
+<svg class="dg" viewBox="0 0 1000 410" role="img" aria-label="A proposal endorsed by two peers in two different organisations">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<rect x="30" y="40" width="240" height="120" rx="8" class="bx bx--ink"/><text x="150" y="72" class="t2" text-anchor="middle">Proposal</text><text x="150" y="96" class="t3" text-anchor="middle">VerifyPlanting</text><text x="150" y="122" class="t4" text-anchor="middle">sent to two peers</text><rect x="340" y="30" width="260" height="84" rx="8" class="bx bx--acc"/><text x="470" y="58" class="t2" text-anchor="middle">Peer A — Forest Dept</text><text x="470" y="80" class="t3" text-anchor="middle">read set · write set · signature</text><rect x="340" y="130" width="260" height="84" rx="8" class="bx bx--acc"/><text x="470" y="158" class="t2" text-anchor="middle">Peer B — Auditor</text><text x="470" y="180" class="t3" text-anchor="middle">read set · write set · signature</text><path d="M280 90 H330 V72 H334" class="ln"/><path d="M280 90 H330 V172 H334" class="ln"/><rect x="670" y="60" width="300" height="100" rx="8" class="bx bx--mut"/><text x="820" y="88" class="t2" text-anchor="middle">Two different organisations</text><text x="820" y="112" class="t3" text-anchor="middle">two different MSP ids</text><text x="820" y="136" class="t3" text-anchor="middle">two different signatures</text><path d="M610 72 H640 V100 H664" class="ln"/><path d="M610 172 H640 V120 H664" class="ln"/><rect x="30" y="240" width="460" height="150" rx="8" class="bx bx--acc"/><text x="50" y="266" class="t2" text-anchor="start">Why two, and why two different ones</text><text x="50" y="292" class="t4" text-anchor="start">One approver IS the trust problem. If one organisation can</text><text x="50" y="307" class="t4" text-anchor="start">approve by itself, you have simply moved the trust from</text><text x="50" y="322" class="t4" text-anchor="start">the database owner to the approver.</text><text x="50" y="338" class="t4" text-anchor="start">So the quorum is two, and the two must come from two</text><text x="50" y="353" class="t4" text-anchor="start">different MSPs — and no person may review the same item</text><text x="50" y="368" class="t4" text-anchor="start">twice.</text><rect x="520" y="240" width="450" height="150" rx="8" class="bx bx--warn"/><text x="540" y="266" class="t2" text-anchor="start">The policy answers who. The contract answers how.</text><text x="540" y="292" class="t4" text-anchor="start">Fabric's endorsement policy is configuration:</text><text x="540" y="307" class="t4" text-anchor="start">AND('ForestDeptMSP','AuditorMSP') — these organisations</text><text x="540" y="322" class="t4" text-anchor="start">must sign.</text><text x="540" y="340" class="t4" text-anchor="start">The contract adds what a policy cannot express: that the</text><text x="540" y="355" class="t4" text-anchor="start">two must be distinct, and that a participant may not</text><text x="540" y="370" class="t4" text-anchor="start">repeat.</text></svg>
+<div class="q"><span class="q__k">The question</span>Why does a transaction need two approvals, and why must those two approvals come from different organisations?</div>
+<p>Because one approval <em>is</em> the trust problem. If a single organisation can approve on its own, then you have not removed trust from the system — you have only moved it from the database owner to the approver. The quorum of two, drawn from two distinct member identities, is what makes the approval independent rather than merely signed.</p>
+<p>Notice the division of labour in the configuration. Fabric's <b>endorsement policy</b> is channel configuration and answers <em>which organisations</em> must sign. It cannot express \u201ctwo, and not the same person twice\u201d — so those rules live in the chaincode, where they can be tested.</p>
+<p>And there is one more rule that people forget: the endorsers must be able to <em>agree</em>. That is the determinism requirement again, arriving for the third time — every peer that evaluates the same proposal must produce the same answer, or there is no transaction to commit.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>Two signatures, from two different organisations, computed identically by both peers. The policy says who; the contract says how many and who may not repeat.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>GreenToken requires exactly this: REQUIRED_ENDORSEMENTS = 2, two distinct MSP identifiers, one review per participant, and rejection is terminal. A planter cannot get a token minted alone, however many times they ask.</p></div>
+</section>
+<section class="page" id="p9">
+<div class="pgnum">Part 3 — the machinery</div>
+<h2>Privacy, and the choice not to use it</h2>
+<svg class="dg" viewBox="0 0 1000 420" role="img" aria-label="Two approaches to keeping a field confidential: distribute it, or never write it">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<rect x="30" y="40" width="430" height="150" rx="9" class="bx bx--ink"/><text x="50" y="66" class="t2" text-anchor="start">Fabric's answer: private data collections</text><text x="50" y="94" class="t4" text-anchor="start">The value is distributed to the members of the</text><text x="50" y="109" class="t4" text-anchor="start">collection. Every other participant sees only its hash</text><text x="50" y="124" class="t4" text-anchor="start">— which is still on-chain, so nobody can quietly</text><text x="50" y="139" class="t4" text-anchor="start">change it afterwards.</text><text x="50" y="166" class="t4" text-anchor="start">Fabric v2.5 can go further: PurgePrivateData deletes</text><text x="50" y="181" class="t4" text-anchor="start">the value and its history while keeping the hash as</text><text x="50" y="196" class="t4" text-anchor="start">evidence.</text><rect x="530" y="40" width="440" height="150" rx="9" class="bx bx--acc"/><text x="550" y="66" class="t2" text-anchor="start">GreenToken's answer: never write it at all</text><text x="550" y="94" class="t4" text-anchor="start">The planter's contact number is stripped at the</text><text x="550" y="109" class="t4" text-anchor="start">chaincode boundary — before it is hashed, before it is</text><text x="550" y="124" class="t4" text-anchor="start">stored, before it is emitted.</text><text x="550" y="166" class="t4" text-anchor="start">The TreeToken type has no field for it, so it cannot</text><text x="550" y="181" class="t4" text-anchor="start">leak: there is nothing in the database to leak.</text><rect x="30" y="220" width="940" height="90" rx="9" class="bx bx--warn"/><text x="50" y="246" class="t2" text-anchor="start">Which is better?</text><text x="50" y="272" class="t4" text-anchor="start">For this one field, GreenToken's is stronger: there is no value anywhere in the system to disclose. But it is a different</text><text x="50" y="287" class="t4" text-anchor="start">mechanism, and if a buyer needed the number itself, a real private data collection would be required.</text><rect x="30" y="330" width="940" height="70" rx="9" class="bx bx--ink"/><text x="50" y="356" class="t2" text-anchor="start">And note what is deliberately NOT private</text><text x="50" y="382" class="t4" text-anchor="start">Reads are open. Anyone may look up any token. That is a feature: a carbon registry has to be checkable by the buyers and by the</text><text x="50" y="397" class="t4" text-anchor="start">public. Only writes are role-gated.</text></svg>
+<div class="q"><span class="q__k">The question</span>A planter's phone number must not be visible to the other three organisations. What are the options?</div>
+<p>Fabric's native answer is the <b>private data collection</b>: the value is distributed to the authorised members, and everyone else sees only its hash. The hash is still on-chain, so the members can still prove the value was never altered — which is the useful half of confidentiality that people often forget to want.</p>
+<p>GreenToken makes a different choice for one particular field: it <b>never writes the value at all</b>. The contact number is stripped at the boundary before anything is hashed or stored. That is a stronger guarantee for that field — there is nothing to disclose — but it is a different mechanism, and anyone examining the project should hear it described that way rather than as \u201ca private data collection\u201d.</p>
+<p>The last box is the one that trips people up. Fabric does <em>not</em> make everything private. In GreenToken every read is open to every member. That is deliberate: the value of a carbon registry is that a buyer can check it without asking permission.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>Privacy here means one field, handled by never writing it. Everything else is public on purpose, because verification is the point.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>privateContact is accepted by the contract for the interface's benefit and then dropped. The proof is in the type: TreeToken has no contact field at all.</p></div>
+</section>
+<section class="page" id="p10">
+<div class="pgnum">Part 4 — our project</div>
+<h2>Now put it all together: our project</h2>
+<svg class="dg" viewBox="0 0 1000 400" role="img" aria-label="The complete GreenToken workflow from planting to settlement">
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+    <path d="M0,0 L0,6.4 L7,3.2 z" fill="#5E7D68"/>
+  </marker>
+</defs>
+<rect x="30" y="34" width="940" height="74" rx="10" class="bx bx--acc"/><text x="500" y="62" class="t1" text-anchor="middle">Everything so far, in one picture</text><text x="500" y="86" class="t3" text-anchor="middle">the four parties, the one channel, the two endorsements, the one invoice</text><rect x="30" y="126" width="295" height="108" rx="9" class="bx bx--ink"/><rect x="30" y="126" width="62" height="26" rx="9" class="bx bx--acc"/><text x="61" y="144" class="t3c" text-anchor="middle">Plan</text><text x="104" y="144" class="t4" text-anchor="start">PLANTER</text><text x="44" y="176" class="t2" text-anchor="start">Lakshmi plants 40 neem trees</text><text x="44" y="210" class="t4" text-anchor="start">photo bytes → SHA-256, geo → SHA-256</text><path d="M327 60 H343" class="ln"/><rect x="345" y="126" width="295" height="108" rx="9" class="bx bx--ink"/><rect x="345" y="126" width="62" height="26" rx="9" class="bx bx--acc"/><text x="376" y="144" class="t3c" text-anchor="middle">Verify</text><text x="419" y="144" class="t4" text-anchor="start">VERIFIER</text><text x="359" y="176" class="t2" text-anchor="start">Forest Dept signs</text><text x="359" y="210" class="t4" text-anchor="start">endorsement 1 of 2</text><path d="M642 60 H658" class="ln"/><rect x="660" y="126" width="295" height="108" rx="9" class="bx bx--ink"/><rect x="660" y="126" width="62" height="26" rx="9" class="bx bx--acc"/><text x="691" y="144" class="t3c" text-anchor="middle">Verify</text><text x="734" y="144" class="t4" text-anchor="start">AUDITOR</text><text x="674" y="176" class="t2" text-anchor="start">Auditor signs</text><text x="674" y="210" class="t4" text-anchor="start">endorsement 2 of 2, two different orgs</text><rect x="30" y="254" width="295" height="108" rx="9" class="bx bx--ink"/><rect x="30" y="254" width="62" height="26" rx="9" class="bx bx--acc"/><text x="61" y="272" class="t3c" text-anchor="middle">Mint</text><text x="104" y="272" class="t4" text-anchor="start">—</text><text x="44" y="304" class="t2" text-anchor="start">token becomes VERIFIED</text><text x="44" y="338" class="t4" text-anchor="start">now it can be bought</text><path d="M327 60 H343" class="ln"/><rect x="345" y="254" width="295" height="108" rx="9" class="bx bx--ink"/><rect x="345" y="254" width="62" height="26" rx="9" class="bx bx--acc"/><text x="376" y="272" class="t3c" text-anchor="middle">Fund</text><text x="419" y="272" class="t4" text-anchor="start">FUNDER</text><text x="359" y="304" class="t2" text-anchor="start">funder picks a basket</text><text x="359" y="338" class="t4" text-anchor="start">discount ladder applied by the contract</text><path d="M642 60 H658" class="ln"/><rect x="660" y="254" width="295" height="108" rx="9" class="bx bx--ink"/><rect x="660" y="254" width="62" height="26" rx="9" class="bx bx--acc"/><text x="691" y="272" class="t3c" text-anchor="middle">Settle</text><text x="734" y="272" class="t4" text-anchor="start">FUNDER / AUDITOR</text><text x="674" y="304" class="t2" text-anchor="start">one invoice, one net amount</text><text x="674" y="338" class="t4" text-anchor="start">Rs 15,525 across 3 invoices</text></svg>
+<div class="q"><span class="q__k">The question</span>Every idea so far, applied to the problem from page 3. Where does each one land?</div>
+<p>The fingerprint becomes the photo and geo digests. The chain becomes the block history. The signatures become the orderer's block signatures and the reviewers' endorsements. The quorum becomes the two-organisation rule. The role-gated writes become the four MSPs. The contract becomes the ten functions that hold the price, the discount ladder, the duplicate-photo guard and the terminal rejection.</p>
+<p>The running system holds 29 blocks and 9 tokens covering 170 trees and 4.7 tonnes of modelled sequestration, and Rs 15,525 net disbursed across three invoices. But the number worth remembering is the last one on the demo: <b>the tamper test</b>. Change a signed payload and the verifier recomputes the whole chain from genesis and names the block and the field. That is pages 3 and 4 — the chain and the signature — running live, in front of an examiner.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>A token is a photograph and a coordinate, reduced to two fingerprints, signed twice by two different organisations, and recorded in a chain nobody can rewrite.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>This is the whole project in one sentence. The rest of Part 4 is detail — but detail you can now build, because you know why each piece exists.</p></div>
+</section>
+<section class="page" id="p11">
+<div class="pgnum">Part 5 — beyond</div>
+<h2>The advanced shelf: what you meet next</h2>
+<div class="advgrid"><div class="advcard"><b>Fabric Gateway (v2.5)</b><span>One service for Evaluate, Endorse, Submit, commit status and events — so the client stops discovering peers itself.</span></div><div class="advcard"><b>Ledger snapshots</b><span>A new peer joins from a snapshot of the state instead of replaying every block from the beginning.</span></div><div class="advcard"><b>PurgePrivateData</b><span>Deletes a private value and its history while keeping the on-chain hash as evidence. Needs V2_5.</span></div><div class="advcard"><b>Chaincode as a service</b><span>The contract runs as an external server the peers call, rather than being installed on every peer.</span></div><div class="advcard"><b>Raft and BFT orderers</b><span>Raft tolerates a node crashing; BFT tolerates nodes actively trying to disrupt the ordering.</span></div><div class="advcard"><b>State-based endorsement</b><span>A different endorsement policy attached to one key in the state, not to the whole contract.</span></div><div class="advcard"><b>Channel configuration</b><span>Membership, policies and orderer settings are themselves transactions, agreed by the members.</span></div><div class="advcard"><b>Identity revocation and ACLs</b><span>Certificates can be revoked, and ACLs say which peer may host which chaincode.</span></div></div>
+<div class="q"><span class="q__k">The question</span>You now have the foundations. What is on the shelf for someone who keeps going?</div>
+<p>The Gateway is the one to learn first, because it is what changed most recently and it simplifies the client. The snapshots and PurgePrivateData are v2.5 features that solve real operational problems — the first about joining a large network, the second about data you must eventually be able to erase.</p>
+<p>The orderer modes are worth understanding as a pair: Raft is the pragmatic choice for a consortium that trusts its own members not to sabotage the ordering service, and BFT is the choice when they do not. The last two show Fabric is a real operating system rather than a demonstration: membership is not a constant but a transaction the members agree, and a certificate can be revoked — which is how a consortium handles a member leaving, something a blockchain that assumes a fixed set of participants cannot do.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>The foundations never change. What changes is the machinery around them, and every piece of machinery exists to solve an operational problem you can now name.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>GreenToken is a v2.5 chaincode project: fabric-contract-api 2.5.8, deployed by a script that packages, installs and approves the definition for all four organisations, with the channel, the MSPs and the endorsement rules all declared in configuration.</p></div>
+</section>
+<section class="page" id="p12">
+<div class="pgnum">Part 5 — beyond</div>
+<h2>Where the edges are</h2>
+<div class="two">
+<div class="col">
+<h3>Real, and running now</h3>
+<ul><li>SHA-256 digests of photo bytes and geo payloads</li><li>ECDSA P-256 endorsements and block signatures</li><li>Merkle roots over transaction hashes</li><li>A real hash-linked, signed block chain</li><li>All eight business rules, enforced in the contract</li><li>Real Fabric v2.5 chaincode, compiled and packaged</li><li>A deployed REST + event-stream API</li><li>A tamper test that localises the break</li></ul>
+</div>
+<div class="col">
+<h3>Emulated, or deliberately scoped out</h3>
+<ul><li>The demo host is a Durable Object, not a Fabric peer</li><li>Private data is stripped, not distributed in a collection</li><li>Keys are derived from participant ids, not CA-issued</li><li>Settlement marks an invoice settled; no money moves</li><li>GPS accuracy is shown to reviewers, not thresholded</li><li>On-chain governance is future work</li></ul>
+</div>
+</div>
+<h3>The one sentence that earns the most marks</h3>
+<p>\u201cThe business logic is real and the cryptography is real; what I simulated is the network layer, and the identical contract deploys to a genuine Fabric peer with <span class="mono">network/deploy.sh</span>.\u201d</p>
+<h3>What to read next</h3>
+<ul><li><b>The Fabric v2.5 documentation</b> — concepts, then the chaincode page, then the Gateway page.</li><li><b>Shah, <em>Blockchain Technology with Hyperledger Fabric</em></b> — the course text; read the architecture chapter alongside this document.</li><li><b>Our own study guide and diagram pack</b> — the 30-page text and the 13 full-page diagrams, which are the reference version of everything in Parts 2 and 3.</li><li><b>The contract itself</b> — <span class="mono">src/core/chaincode.ts</span> is about 800 lines, and it is the best possible summary of Parts 2 and 3, because it is where they meet.</li></ul>
+<div class="check"><span class="check__k">The Feynman check</span><p>Knowing where your own work stops is not a weakness in the work. It is the difference between a system and a demonstration, and it is the first thing an examiner will check.</p></div>
+</section>
+<section class="page" id="p13">
+<div class="pgnum">Part 5 — beyond</div>
+<h2>The whole thing on one page</h2>
+<div class="sumgrid"><div class="sum"><b>The problem</b><span>Four parties, four private notebooks, no shared truth. The fix must be shared, append-only, independently checkable and attributable.</span></div><div class="sum"><b>The fingerprint</b><span>SHA-256 commits to a piece of data without hiding it. One-way, deterministic, collision-resistant.</span></div><div class="sum"><b>The chain</b><span>Each block carries the previous block's fingerprint, so an alteration cascades. This makes tampering detectable, not impossible.</span></div><div class="sum"><b>The signature</b><span>The orderer and the endorsers sign. You can recompute every hash; you cannot forge a signature. This makes tampering impossible to hide.</span></div><div class="sum"><b>The Merkle tree</b><span>One root that commits to every transaction in a block, and a proof of one transaction that is logarithmic in size.</span></div><div class="sum"><b>The parts</b><span>MSP, channel, peer, orderer, chaincode, gateway. Each exists because something breaks without it.</span></div><div class="sum"><b>The lifecycle</b><span>Proposal, endorsement, ordering, validation, commit, notification. The code runs at phase two.</span></div><div class="sum"><b>The rules</b><span>Two signatures from two different organisations, determinism, and the choice to make reads public and writes role-gated.</span></div><div class="sum"><b>Our project</b><span>Two fingerprints, two signatures from two organisations, one chain nobody can rewrite, one invoice — and a tamper test you can watch.</span></div></div>
+<div class="q"><span class="q__k">The question</span>If you remember nothing else, what should survive?</div>
+<p>Nine sentences. Each one is checkable against the code, and each one you should be able to say out loud without notes. If any of them will not come out, go back to the page that introduced it — that is the entire method.</p>
+<div class="check"><span class="check__k">The Feynman check</span><p>Understand it, rebuild it, then say it simply. That is the whole trick, and it works for smart contracts exactly as it works for physics.</p></div>
+<div class="ours"><span class="ours__k">In GreenToken</span><p>GreenToken, in one breath: a planter photographs trees and signs their coordinates; two independent organisations check the proof and sign it; the contract fixes the price and the discount; a funder buys a basket and one invoice settles it; and every record sits in a chain that would announce, loudly and precisely, if anybody ever touched it.</p></div>
+</section>
+</body></html>
