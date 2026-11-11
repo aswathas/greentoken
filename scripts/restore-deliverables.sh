@@ -22,14 +22,17 @@ DIR="dist-deliverables"
 VERIFY_ONLY=0
 [[ "${1:-}" == "--verify" ]] && VERIFY_ONLY=1
 
-if ! compgen -G "$DIR/*.b64" >/dev/null; then
+if ! compgen -G "$DIR/*.b64.[0-9][0-9][0-9]" >/dev/null; then
   echo "nothing to restore — no .b64 files found in $DIR/"
   exit 0
 fi
 
 status=0
-for src in "$DIR"/*.b64; do
-  base="$(basename "$src" .b64)"
+for src in "$DIR"/*.b64.[0-9][0-9][0-9]; do
+  [[ -e "$src" ]] || continue
+  # the sidecar for <name> is split into <name>.b64.001, .002, ...
+  base="$(basename "$src")"
+  base="${base%.b64.*}"
   dest="$DIR/$base"
 
   if [[ -f "$dest" ]]; then
@@ -42,10 +45,10 @@ for src in "$DIR"/*.b64; do
     continue
   fi
 
-  base64 -d "$src" > "$dest.tmp" && mv "$dest.tmp" "$dest"
+  cat "$DIR/$base".b64.[0-9][0-9][0-9] | base64 -d > "$dest.tmp" && mv "$dest.tmp" "$dest"
 
-  if [[ -f "$src.sha256" ]]; then
-    expected="$(awk '{print $1}' "$src.sha256")"
+  if [[ -f "$DIR/$base.b64.sha256" ]]; then
+    expected="$(awk '{print $1}' "$DIR/$base.b64.sha256")"
     actual="$(sha256sum "$dest" | awk '{print $1}')"
     if [[ "$expected" == "$actual" ]]; then
       echo "ok     $base  sha256 $actual"
