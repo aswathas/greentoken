@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>GreenToken — Demo Card</title>
+<style>
+  @page { size: A4; margin: 11mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #1b1b1b; margin: 0; font-size: 7.8pt; line-height: 1.2;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  h1 { font-size: 15.5pt; margin: 0 0 0.8mm; letter-spacing: -0.3pt; }
+  .sub { color: #555; font-size: 8pt; margin: 0 0 2.4mm; }
+  .url { color: #0b6b3a; font-weight: 700; }
+  .cols { display: flex; gap: 6mm; }
+  .main { width: 61%; }
+  .side { width: 39%; }
+
+  .step { border-left: 3px solid #0b6b3a; padding: 0 0 0 2.6mm; margin-bottom: 1.7mm; }
+  .step--hot { border-left-color: #b3261e; }
+  .head { display: flex; align-items: baseline; gap: 2.2mm; margin-bottom: 0.55mm; }
+  .n { font-weight: 800; font-size: 9pt; color: #0b6b3a; min-width: 5mm; }
+  .step--hot .n { color: #b3261e; }
+  .t { font-weight: 700; font-size: 8.5pt; }
+  .time { margin-left: auto; font-size: 7.4pt; color: #fff; background: #6b7280;
+         border-radius: 2mm; padding: 0.4mm 1.6mm; font-weight: 700; }
+  .step--hot .time { background: #b3261e; }
+  .click { font-size: 7.6pt; color: #0b6b3a; font-weight: 700; margin-bottom: 0.7mm; }
+  .say { color: #222; font-style: italic; line-height: 1.26; }
+  .say b { font-style: normal; }
+
+  .box { border: 1px solid #d6d3ca; border-radius: 2mm; padding: 1.6mm 2.2mm; margin-bottom: 1.8mm; background: #fbfaf6; }
+  .box h2 { font-size: 7.4pt; text-transform: uppercase; letter-spacing: 0.7pt;
+            margin: 0 0 1.1mm; color: #0b6b3a; font-weight: 800; }
+  .box--warn { background: #fdf3f2; border-color: #e8c4c0; }
+  .box--warn h2 { color: #b3261e; }
+  .box--dark { background: #17301f; border-color: #17301f; color: #eaf3ec; }
+  .box--dark h2 { color: #9fd6b4; }
+  .box--dark li { color: #dcebe0; }
+  .box--dark .k { color: #ffffff; }
+  .box--dark .mono { color: #bfe4cb; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 7.8pt; }
+  td { padding: 0.4mm 0; border-bottom: 1px solid #e6e3da; vertical-align: top; }
+  td:last-child { text-align: right; font-weight: 700; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+
+  ol, ul { margin: 0; padding-left: 4mm; }
+  li { margin-bottom: 0.7mm; }
+  .k { font-weight: 700; }
+  .footer { margin-top: 2mm; border-top: 1px solid #d6d3ca; padding-top: 1.4mm;
+            font-size: 7.2pt; color: #666; display: flex; justify-content: space-between; }
+  .pill { display: inline-block; background: #0b6b3a; color: #fff; border-radius: 1.5mm;
+          padding: 0.2mm 1.6mm; font-size: 7.6pt; font-weight: 700; margin-right: 1.2mm; }
+  .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 7.8pt; }
+</style>
+</head>
+<body>
+
+  <h1>GreenToken — demo card</h1>
+  <p class="sub">Unit 5 · Blockchain Technology with Hyperledger Fabric &nbsp;·&nbsp; live at
+     <span class="url">greentoken-7gc.pages.dev</span> &nbsp;·&nbsp; 8 steps, 6–8 min</p>
+
+  <div class="cols">
+    <div class="main">
+
+      <div class="step">
+        <div class="head"><span class="n">1</span><span class="t">Dashboard</span><span class="time">45s</span></div>
+        <div class="say">Six tiles: <b>9 tokens, 170 trees, 4.7 t CO₂, ₹5,550 disbursed</b>, 29 blocks, ring says <b>ledger intact</b> — that is recomputed every render, I'll prove it at the end. The feed on the right is the <b>chaincode event stream</b>.</div>
+      </div>
+
+      <div class="step">
+        <div class="head"><span class="n">2</span><span class="t">Discover &amp; Fund</span><span class="time">60s</span></div>
+        <div class="click">Click marker → token card → “View full provenance” → tick 2 VERIFIED into basket</div>
+        <div class="say">Each marker is a token with <b>GPS coordinates and photo hash on chain</b>. Filter by district or species. The provenance view shows the raw JSON — <b>nothing is computed on the client</b>.</div>
+      </div>
+
+      <div class="step">
+        <div class="head"><span class="n">3</span><span class="t">Invoice</span><span class="time">60s</span></div>
+        <div class="click">Switch identity → <b>Aarav Menon (Corporate Green Funders)</b> → “🧾 Issue invoice &amp; fund”</div>
+        <div class="say">Gross, discount, net. The discount ladder — <b>50u→5%, 200u→10%, 500u→15%</b> — lives <b>inside the contract</b>. The client cannot pick its own discount. One invoice covers every planter in the basket.</div>
+      </div>
+
+      <div class="step">
+        <div class="head"><span class="n">4</span><span class="t">Plant a Tree</span><span class="time">60s</span></div>
+        <div class="click">Switch identity → <b>Lakshmi Gowda</b> → “📍 Use my GPS” (or “Generate sample proof”) → Submit planting proof</div>
+        <div class="say">What goes on the ledger is the <b>SHA-256 of the photo bytes and of the geo payload</b> — not the photo. Token GT-000010 created, <b>awaiting two endorsements</b>. Nobody mints alone.</div>
+      </div>
+
+      <div class="step">
+        <div class="head"><span class="n">5</span><span class="t">Verification</span><span class="time">60s</span></div>
+        <div class="click">Endorse as <b>Dr. S. Raghavan</b> (Forest Dept) → endorse as <b>Nikhil Kapoor</b> (Auditor) → flips to VERIFIED</div>
+        <div class="say">One of two. The contract <b>blocks the same reviewer endorsing twice</b>, so one person cannot manufacture quorum. The reviewer sees the <b>GPS accuracy radius</b> before approving — the seeded example shows a rejection at 320 m.</div>
+      </div>
+
+      <div class="step">
+        <div class="head"><span class="n">6</span><span class="t">Ledger Explorer</span><span class="time">60s</span></div>
+        <div class="click">Expand the top block</div>
+        <div class="say">Each block carries its <b>previous hash, Merkle root over transaction hashes</b>, and the ordering service's signature. Expanding shows every transaction, its payload hash, and which org endorsed it. <b>Do not rush this slide.</b></div>
+      </div>
+
+      <div class="step step--hot">
+        <div class="head"><span class="n">7</span><span class="t">The tamper test</span><span class="time">90s</span></div>
+        <div class="click">“⚠ Tamper with last block” → card turns red → “↺ Restore chain”</div>
+        <div class="say">“Now the part most projects claim and cannot demonstrate. I am going to tamper with the last block.” The verifier recomputed <b>every hash from scratch</b> and names the exact block and what no longer matches. Nobody changes history quietly — <b>they only get caught</b>. Then it restores by re-signing, so the examiner can repeat it.</div>
+      </div>
+
+      <div class="step">
+        <div class="head"><span class="n">8</span><span class="t">Leaderboard</span><span class="time">45s</span></div>
+        <div class="say">The leaderboard is a <b>query, not a stored score</b> — computed from ledger state, so a planter cannot inflate their own carbon number. Every dashboard number is read from the ledger, not typed in.</div>
+      </div>
+
+      <div class="box box--warn">
+        <h2>If something breaks</h2>
+        <ul>
+          <li><span class="k">Blank map</span> — tiles need internet; markers still plot. Say so and move on.</li>
+          <li><span class="k">Geolocation blocked</span> — non-HTTPS origin. Use “Generate sample proof”.</li>
+          <li><span class="k">Link down</span> — <span class="mono">npm run dev</span> locally; fully functional offline with its own ledger.</li>
+          <li><span class="k">Need clean data</span> — Ledger Explorer → “↺ Reset demo” reseeds from genesis.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="side">
+
+      <div class="box">
+        <h2>Live numbers — read these off the screen</h2>
+        <table>
+          <tr><td>Tokens on chain</td><td>9</td></tr>
+          <tr><td>Trees recorded</td><td>170</td></tr>
+          <tr><td>CO₂ sequestered</td><td>4.7 t</td></tr>
+          <tr><td>Funds disbursed</td><td>₹5,550</td></tr>
+          <tr><td>Net across 3 invoices</td><td>₹15,525</td></tr>
+          <tr><td>Blocks</td><td>29</td></tr>
+          <tr><td>Planters / districts</td><td>8 / 7</td></tr>
+          <tr><td>Verified / funded</td><td>3 / 4</td></tr>
+          <tr><td>Pending / rejected</td><td>1 / 1</td></tr>
+          <tr><td>Price per tree</td><td>₹150</td></tr>
+          <tr><td>Automated checks</td><td>167 / 167</td></tr>
+        </table>
+      </div>
+
+      <div class="box">
+        <h2>Four orgs, one channel</h2>
+        <ul>
+          <li><span class="k">Planters Association</span> (Lakshmi Gowda) — submit proofs</li>
+          <li><span class="k">Forest Department</span> (Dr. S. Raghavan) — endorse / reject</li>
+          <li><span class="k">Carbon Auditor</span> (Nikhil Kapoor) — endorse / reject</li>
+          <li><span class="k">Corporate Funders</span> (Aarav Menon) — fund, settle</li>
+        </ul>
+      </div>
+
+      <div class="box box--dark">
+        <h2>One line for each hard question</h2>
+        <ul>
+          <li><span class="k">"Real Fabric or simulation?"</span> — Real Fabric v2.5 TS chaincode in <span class="mono">chaincode/src/contract.ts</span>. The business logic has no platform imports; each host supplies its own adapter. The demo ran on a Cloudflare Durable Object — a real ordering-and-commit host that needs no Docker. <b>Same contract, unchanged, on Fabric.</b></li>
+          <li><span class="k">"Why two endorsements?"</span> — One approver <b>is</b> the trust problem. Two independent orgs must sign, and the contract enforces no double endorsement. That rule is in the chaincode, not the UI.</li>
+          <li><span class="k">"Can a planter fake it?"</span> — Same photo twice is bound to a geo-hash and a distinct token id; the reviewer sees the GPS radius; and they still need two orgs they do not control.</li>
+          <li><span class="k">"How do I know the numbers are real?"</span> — They're read out of ledger state by the same read models the HTTP API exposes. I can show you the endpoint. <b>Nothing is typed in by hand.</b></li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h2>On a phone</h2>
+        <ul>
+          <li>Tap <span class="k">☰</span> top-left to open the drawer — all seven sections are there</li>
+          <li>Layout is fluid from 360 px up; no horizontal scrolling</li>
+          <li>Same URL, same ledger, same live backend</li>
+          <li>Useful for showing the examiner you built for touch</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h2>Before you present</h2>
+        <ul>
+          <li>Open the URL in a <span class="k">new window</span>, full screen, bookmarks bar hidden</li>
+          <li>Open the identity switcher once to show the four orgs, then back to Lakshmi Gowda</li>
+          <li>Pre-load the <span class="k">Ledger Explorer</span> tab</li>
+          <li>Zoom to 125% if the projector is low-res — ledger and invoice screens are dense</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>GreenToken · Unit 5 course project · greentoken-7gc.pages.dev · works on a phone too</span>
+    <span>API: greentoken-api.aswathas13.workers.dev · ledger intact: 29 blocks, 9 tokens</span>
+  </div>
+
+</body>
+</html>

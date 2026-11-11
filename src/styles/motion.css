@@ -1,0 +1,141 @@
+/* ============================================================
+   GreenToken — motion layer
+   ------------------------------------------------------------
+   Styles for the components in src/motion. Everything here is
+   self-contained: the only colours used are the theme custom
+   properties (--bg, --surface, --accent, --line, ...), never a
+   hard-coded hex value, so the layer re-themes automatically.
+   ============================================================ */
+
+/* ---------------- page transition ---------------- */
+
+.page-transition {
+  position: relative;
+}
+
+.page-transition__page {
+  will-change: transform, opacity;
+}
+
+/* ---------------- reveal / stagger ---------------- */
+
+.reveal {
+  will-change: transform, opacity;
+}
+
+.stagger {
+  will-change: transform, opacity;
+}
+
+.stagger__item {
+  will-change: transform, opacity;
+}
+
+/* ---------------- ambient layer ---------------- */
+
+.ambient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  filter: blur(26px);
+  z-index: 0;
+}
+
+/*
+ * The ambient layer is absolutely positioned, so its host has to be a
+ * positioning context. :has() guarantees that without touching the host's
+ * own stylesheet; hosts that are already positioned keep their own value
+ * as long as they do not rely on `position: static` for layout.
+ */
+*:has(> .ambient) {
+  position: relative;
+}
+
+.ambient__leaf {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: var(--accent);
+  opacity: var(--alpha);
+  border-radius: 100% 0 100% 0;
+  will-change: transform;
+  animation: gt-drift var(--dur) ease-in-out var(--delay) infinite alternate;
+}
+
+.ambient__leaf--round {
+  border-radius: 50%;
+  animation-name: gt-float;
+}
+
+/* Paused while the tab is hidden. */
+.ambient--paused .ambient__leaf,
+.ambient--paused .ambient__leaf--round {
+  animation-play-state: paused;
+}
+
+@keyframes gt-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(var(--rot));
+  }
+  50% {
+    transform: translate3d(var(--drift), calc(var(--drift) * -0.6), 0)
+      rotate(calc(var(--rot) + 40deg));
+  }
+  100% {
+    transform: translate3d(calc(var(--drift) * -0.5), var(--drift), 0)
+      rotate(calc(var(--rot) - 30deg));
+  }
+}
+
+@keyframes gt-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(calc(var(--drift) * -0.5), calc(var(--drift) * 0.4), 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(var(--drift), calc(var(--drift) * -1), 0) scale(1.12);
+  }
+}
+
+/* ---------------- growth scene ---------------- */
+
+.growth-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* ---------------- integrity ring ---------------- */
+
+.integrity-ring {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.integrity-ring__art {
+  display: block;
+  overflow: visible;
+}
+
+.integrity-ring__label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.integrity-ring__sub {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.integrity-ring[data-valid='false'] .integrity-ring__label {
+  color: var(--danger);
+}

@@ -1,0 +1,8 @@
+{
+  "name": "greentoken-ppt",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "node slides/compile.js"
+  }
+}

@@ -1,0 +1,22 @@
+node_modules/
+dist/
+worker/node_modules/
+chaincode/node_modules/
+chaincode/dist/
+chaincode/*.tar.gz
+ppt/slides/output/
+.mavis/
+dist-deliverables/greentoken-source.zip
+
+# local guide build artefacts
+docs/guide-probe.pdf
+docs/_qa/
+docs/_t/
+
+# local env
+.env
+.env.local
+
+# local dev state + duplicated build inputs
+worker/.wrangler/
+ppt/screenshots/

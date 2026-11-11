@@ -1,0 +1,175 @@
+# GreenToken — minimal Hyperledger Fabric v2.5 network
+#
+# One orderer (etcdraft), one Fabric CA, one peer with CouchDB as the state
+# database and LevelDB as the block store, and a peer CLI available on demand
+# through the "cli" compose profile.
+#
+#   docker compose up -d orderer0 ca0 peer0 couchdb
+#   docker compose --profile cli up cli
+#
+# Host paths:
+#   ./crypto            -> /tmp/hyperledger                    (MSPs, TLS material, CA config)
+#   ./channel-artifacts -> /tmp/hyperledger/channel-artifacts  (genesis.block, configtx.yaml, *.tx)
+#
+# network/deploy.sh expects exactly these paths, so run cryptogen/configtxgen
+# with an output directory that reproduces them. See network/README.md.
+
+name: greentoken
+
+services:
+
+  # ------------------------------------------------------------------ #
+  # CouchDB — the peer's state database
+  # ------------------------------------------------------------------ #
+  couchdb:
+    image: couchdb:3.3.3
+    container_name: couchdb
+    hostname: couchdb.greentoken.com
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=adminpassword
+    ports:
+      - "5984:5984"   # CouchDB API
+      - "6924:6924"   # CouchDB admin/Fauxton
+    volumes:
+      - couchdb-data:/opt/couchdb/data
+    networks:
+      - greentoken-net
+
+  # ------------------------------------------------------------------ #
+  # Ordering service — Raft (etcdraft) consensus
+  # ------------------------------------------------------------------ #
+  orderer0:
+    image: hyperledger/fabric-orderer:2.5
+    container_name: orderer0
+    hostname: orderer.greentoken.com
+    command: orderer
+    environment:
+      # Raft consensus: the ordering service does not order alone, it replicates.
+      - ORDERER_GENERAL_GENESISMETHOD=etcdraft
+      - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
+      - ORDERER_GENERAL_LOCALBOOTSTRAP=1
+      - ORDERER_GENERAL_GENESISFILE=/tmp/hyperledger/channel-artifacts/genesis.block
+      - ORDERER_ETCDRAFT_CONSENSUS=etcdraft
+      # Listen on the address that the channel config names for this consenter.
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0:7050
+      - ORDERER_LISTENADDRESS=0.0.0.0:7050
+      # TLS for the channel — the same material the CLI uses.
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_CERT_FILE=/tmp/hyperledger/organizations/ordererOrganizations/example.com/tls/server.crt
+      - ORDERER_GENERAL_TLS_KEY_FILE=/tmp/hyperledger/organizations/ordererOrganizations/example.com/tls/server.key
+      - ORDERER_GENERAL_TLS_ROOTCERT_FILE=/tmp/hyperledger/organizations/ordererOrganizations/example.com/tls/ca.crt
+      - ORDERER_OPERATIONS_TLS_ENABLED=false
+    ports:
+      - "7050:7050"   # orderer — deploy.sh ORDERER=localhost:7050
+      - "2020:2020"   # operations
+    volumes:
+      - ./crypto:/tmp/hyperledger
+      - ./channel-artifacts:/tmp/hyperledger/channel-artifacts
+    networks:
+      - greentoken-net
+    depends_on:
+      - couchdb
+
+  # ------------------------------------------------------------------ #
+  # Fabric CA — enrols the four organisations' members
+  # ------------------------------------------------------------------ #
+  ca0:
+    image: hyperledger/fabric-ca:1.5
+    container_name: ca0
+    hostname: ca.greentoken.com
+    command: fabric-ca-server -b ca-admin -d /tmp/hyperledger/ca-db --config /tmp/hyperledger/fabric-ca-config.yaml
+    environment:
+      - FABRIC_CA_HOME=/tmp/hyperledger/ca-home
+      - FABRIC_CA_SERVER_HOME=/tmp/hyperledger/ca-home
+    ports:
+      - "7054:7054"   # CA — deploy.sh PEER_CA=localhost:7054
+    volumes:
+      - ./crypto:/tmp/hyperledger
+      - ca-db:/tmp/hyperledger/ca-db
+    networks:
+      - greentoken-net
+
+  # ------------------------------------------------------------------ #
+  # peer0 — chaincode host, gRPC endpoint, state DB client
+  # ------------------------------------------------------------------ #
+  peer0:
+    image: hyperledger/fabric-peer:2.5
+    container_name: peer0
+    hostname: peer0.greentoken.com
+    environment:
+      - CORE_PEER_ID=peer0.greentoken.com
+      - CORE_PEER_ADDRESS=peer0.greentoken.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_LOCALMESH_ID=peer0
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.greentoken.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALADDRESS=peer0.greentoken.com:7051
+      - CORE_PEER_GOSSIP_USELEADERS=false
+      - CORE_PEER_GOSSIP_ORGPROFILE=true
+      # The peer's own MSP (first organisation; add peers per org for the rest).
+      - CORE_PEER_MSPCONFIGPATH=/tmp/hyperledger/organizations/peerOrganizations/example.com/msp
+      # Channel TLS.
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/tmp/hyperledger/organizations/peerOrganizations/example.com/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/tmp/hyperledger/organizations/peerOrganizations/example.com/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/tmp/hyperledger/organizations/peerOrganizations/example.com/tls/ca.crt
+      - CORE_OPERATIONS_TLS_ENABLED=false
+      # State database: CouchDB for the key/value world state.
+      # The block store stays LevelDB on the peer's own filesystem.
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDB_URL=http://admin:adminpassword@couchdb:5984
+      - CORE_LEDGER_STATE_COUCHDB_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDB_PASSWORD=adminpassword
+      - CORE_LEDGER_STATE_COUCHDB_ISNEWDB=true
+      # External (Node.js) chaincode builder — the GreenToken chaincode is TypeScript.
+      - CORE_CHAINCODE_BUILDER=hyperledger/fabric-ccenv
+      - CORE_CHAINCODE_TLS_ENABLED=false
+      - CORE_CHAINCODE_EXECUTE=ls
+    ports:
+      - "7051:7051"   # chaincode gRPC — deploy.sh PEER_CONN=localhost:7051
+      - "9443:9443"   # peer operations
+    volumes:
+      - ./crypto:/tmp/hyperledger
+      - ./channel-artifacts:/tmp/hyperledger/channel-artifacts
+      - ../chaincode:/tmp/hyperledger/chaincode
+      - peer-data:/var/hyperledger
+    networks:
+      - greentoken-net
+    depends_on:
+      - couchdb
+      - orderer0
+      - ca0
+
+  # ------------------------------------------------------------------ #
+  # peer CLI — starts only when the profile is requested
+  # ------------------------------------------------------------------ #
+  cli:
+    image: hyperledger/fabric-tools:2.5
+    container_name: cli
+    profiles:
+      - "cli"
+    tty: true
+    stdin_open: true
+    environment:
+      - CORE_CHAINCODE_ID_NAME=greentoken:1.0.0
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - GOPATH=/go
+    volumes:
+      - ./crypto:/tmp/hyperledger
+      - ./channel-artifacts:/tmp/hyperledger/channel-artifacts
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    working_dir: /tmp/hyperledger
+    networks:
+      - greentoken-net
+    depends_on:
+      - orderer0
+      - peer0
+
+networks:
+  greentoken-net:
+    driver: bridge
+
+volumes:
+  couchdb-data:
+  ca-db:
+  peer-data:

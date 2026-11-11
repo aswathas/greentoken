@@ -1,0 +1,23 @@
+name = "greentoken-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# The Durable Object is the channel — it owns the ordered ledger.
+[[durable_objects.bindings]]
+name = "GREENTOKEN"
+class_name = "GreenTokenChannel"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["GreenTokenChannel"]
+
+[observability]
+enabled = true
+
+# Deploy with:
+#   npx wrangler deploy
+#
+# The account id is read from CLOUDFLARE_ACCOUNT_ID (or wrangler's login).
+[vars]
+CHANNEL_NAME = "greentoken-channel"
