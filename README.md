@@ -51,19 +51,50 @@ Everything below is committed in this repository and downloadable directly from 
 |---|---|---|
 | **Presentation deck** | [`.pptx`](https://greentoken-7gc.pages.dev/downloads/GreenToken-Verifiable-Carbon-Tokens-Unit5.pptx) · [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Verifiable-Carbon-Tokens-Unit5.pdf) | 21 slides · the full Unit 5 pitch, built on the white-and-green theme |
 | **Study guide** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Guide.pdf) | 30 pages · Fabric from first principles, the architecture, the demo script and 20 viva Q&A with answers |
+| **Diagram pack** | [PDF](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Diagrams.pdf) | 15 pages · 13 full-page diagrams mapping the project onto Fabric — the components, the six-phase lifecycle, endorsement and quorum, ledger anatomy, tamper localisation, and the honest scope |
 | **Demo card** | [PDF](https://greentoken-7gc.pages.dev/downloads/DEMO-CARD.pdf) | One printable page · the whole demo on a card to hold during the presentation |
 | **Run of show** | [`docs/demo-run-of-show.md`](docs/demo-run-of-show.md) | Timed script with exact click paths and the wording for the tamper demonstration |
 | **Live demo** | <https://greentoken-7gc.pages.dev> | The running application — plant → verify → fund → settle → tamper test |
 
-The deck, the study guide and the demo card are served straight from the live
-deployment, so the links above never rot. The **same bytes are also committed in
+The deck, the study guide, the diagram pack and the demo card are served
+straight from the live deployment, so the links above never rot. The **same bytes are also committed in
 this repository** as `.b64` files under `dist-deliverables/` — run
 
 ```bash
 ./scripts/restore-deliverables.sh      # decodes them back to .pptx / .pdf
 ```
 
-to materialise the real files locally.
+to materialise the real files locally, or
+
+```bash
+./scripts/fetch-deliverables.sh        # downloads everything + verifies checksums
+```
+
+to pull the deliverables *and* the screenshots from the live deployment in one
+command.
+
+### The diagram pack
+
+[`GreenToken-Fabric-Diagrams.pdf`](https://greentoken-7gc.pages.dev/downloads/GreenToken-Fabric-Diagrams.pdf)
+is the visual companion to the study guide — thirteen full-page diagrams, one
+concept per page, each with a plain-English caption and a **Say it** line for
+the viva. It is also the fastest answer to "draw the architecture":
+
+| Page | Diagram |
+|---|---|
+| 3 | The five Fabric components and how GreenToken uses them |
+| 4 | The consortium — four MSPs, one channel, one orderer |
+| 5 | The six-phase transaction lifecycle, traced through `VerifyPlanting` |
+| 6 | Endorsement and quorum anatomy — two signatures, two organisations |
+| 7 | Ledger anatomy — block header, transactions, Merkle root, world state |
+| 8 | The hash chain and how a tamper is localised |
+| 9 | One contract, three hosts |
+| 10 | The token state machine and the end-to-end flow |
+| 11 | The eight trust rules, mapped to the code that enforces them |
+| 12 | Determinism and private data |
+| 13 | Reads versus writes, and what the Gateway does |
+| 14 | What is real and what is emulated |
+| 15 | One-page revision sheet |
 
 **Screenshots** of every screen (desktop and mobile) are served from
 [`/downloads/`](https://greentoken-7gc.pages.dev/downloads/live-deploy.png) and live in

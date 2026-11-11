@@ -28,17 +28,14 @@ if ! compgen -G "$DIR/*.b64.[0-9][0-9][0-9]" >/dev/null; then
 fi
 
 status=0
+# each sidecar <name>.b64 may be split into <name>.b64.001, .002, ... —
+# iterate over the distinct base names, not the parts
 for src in "$DIR"/*.b64.[0-9][0-9][0-9]; do
   [[ -e "$src" ]] || continue
-  # the sidecar for <name> is split into <name>.b64.001, .002, ...
   base="$(basename "$src")"
   base="${base%.b64.*}"
   dest="$DIR/$base"
-
-  if [[ -f "$dest" ]]; then
-    echo "skip   $base (already present)"
-    continue
-  fi
+  [[ -f "$dest" ]] && continue
 
   if [[ "$VERIFY_ONLY" == "1" ]]; then
     echo "would restore $base"
