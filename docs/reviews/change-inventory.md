@@ -3,7 +3,7 @@
 **Date:** 17 November 2026
 **Branch:** `feat/smartcontracts-teaching-deck`
 **Base:** `main` @ `e0b079a` ("Story deck sidecar checksum")
-**Push target:** `origin/feat/smartcontracts-teaching-deck` (then a PR into `main`)
+**Push target:** `origin/feat/smartcontracts-teaching-deck` → **PR #1 → merged into `main` as `c227ac2`** (content commit `116b7ac`, kept as the merge's second parent)
 
 Every file below is **new**. Nothing in the existing application (`src/`, `chaincode/`, `worker/`,
 `network/`, `dist-deliverables/`) is modified, moved or deleted.
