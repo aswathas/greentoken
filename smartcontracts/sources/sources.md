@@ -26,10 +26,10 @@ this file was invented: a figure whose publisher or year could not be confirmed 
 
 | # | Claim on the slide | Figure | Publisher | Title | Year | URL | Status |
 |---|---|---|---|---|---|---|---|
-| B1 | Primary market value of the voluntary carbon market | US$ 1.4 bn | MSCI | *Carbon Credits Come of Age in 2025* | 2025 | https://www.msci.com/ | confirmed in appendix A6 ("MSCI, 2025"); the report's own page is behind MSCI's site search — publisher root verified, report URL not captured |
+| B1 | Primary market value of the voluntary carbon market | US$ 1.4 bn | MSCI — *Carbon Credits Come of Age in 2025*, Guy Turner, William Zimmern, Utkarsh Akhouri, Nicholas Baldwin, Jamie Lambert | *Carbon Credits Come of Age in 2025* | 2025 (the figure year; the post is dated **6 January 2026**) | https://www.msci.com/research-and-insights/blog-post/carbon-credits-come-of-age-in-2025 | **verified at the source, 17 Nov 2026** — the post says *"The value of the primary global carbon-credit market remained steady last year at just over USD 1.4 billion"* and *"remained broadly unchanged **in 2025** at around USD 1.4 billion"*, "the fourth consecutive year at around this level". The same figure was carried for **2024** by MSCI's earlier post *Frozen Carbon Credit Market May Thaw as 2030 Gets Closer* (6 Jan 2025: *"The size of the global carbon credit market remained on ice last year, at around USD 1.4 billion"*), which is why an earlier note on this deck read "2024". The deck's "2025" is the correct year for the report it cites. |
 | B2 | Credits issued | 294 Mt | MSCI; UNCTAD | *Carbon Credits Come of Age in 2025*; *The role of voluntary carbon markets in global climate action* | 2025 | https://unctad.org/publication/role-voluntary-carbon-markets-global-climate-action | **verified** — the UNCTAD URL resolves (HTTP 200) and its page title is *"The role of voluntary carbon markets in global climate action"*. Confirmed in appendix A6 ("Credits issued vs retired, **2025** · 294 Mt / 202 Mt · MSCI · 2025") |
 | B3 | Credits retired | 202 Mt | MSCI; UNCTAD | as above | 2025 | as above | confirmed in appendix A6 |
-| B4 | Credits issued but never retired | 71 Mt | MSCI; UNCTAD | as above | 2025 | as above | confirmed — slide 4's card *"71 Mt of credits were issued and never used"*; the same figure and source line appear in the project's own story deck (slide 6). **Note the arithmetic:** 294 − 202 = 92 Mt is the *flow* gap within 2025; 71 Mt is the *stock* of credits issued and never retired. The slide prints 71 Mt, the sources say 71 Mt, and the script says 71 Mt. |
+| B4 | Credits issued but never retired | 71 Mt | UNCTAD — *The Role of Voluntary Carbon Markets in Global Climate Action* (UNCTAD/DIAE/2025/5) | *The Role of Voluntary Carbon Markets in Global Climate Action* | **2024** | https://unctad.org/publication/role-voluntary-carbon-markets-global-climate-action | **verified at the source, 17 Nov 2026** — the PDF (2.2 MB, `unctad.org/system/files/official-document/diae2025d5_en.pdf`) says, in its own words: *"a persistent surplus of issued but unretired credits, such as the 71 million credits, like 2024's 71 Mt, surplus in 2024"*. So the 71 Mt is a **2024** figure — the cumulative non-retired surplus — and is *not* the 2025 flow gap: 294 − 202 = 92 Mt is a different quantity. Slide 4 now prints the year. |
 | B5 | Registries tracked | 18 | MSCI; UNCTAD | as above | 2025 | as above | confirmed — slide 4 card; UNCTAD's point is that these registries cannot talk to each other |
 | B6 | Credits issued since Paris | 2.6 bn | MSCI; UNCTAD | as above | 2025 | as above | confirmed — slide 4 card |
 | B7 | Registered projects | 10,200+ | MSCI; UNCTAD | as above | 2025 | as above | confirmed — slide 4 card |
@@ -39,9 +39,9 @@ this file was invented: a figure whose publisher or year could not be confirmed 
 | # | Claim on the slide | Figure | Publisher | Title | Year | URL | Status |
 |---|---|---|---|---|---|---|---|
 | C1 | Paris Agreement Article 6 — ITMOs, corresponding adjustment, the PACM registry on the UNFCCC registry | Art. 6 | UNFCCC | *Article 6 — The Paris Agreement* | in force since 2021 | https://unfccc.int/process-and-meetings/the-paris-agreement/article-6 | **verified** — resolves HTTP 200 (the page renders client-side, so its title is not in the served HTML) |
-| C2 | India's Carbon Credit Trading Scheme 2023 — notified 28 June 2023 under s.14(w) of the Energy Conservation Act 2002 | 28 Jun 2023 | Ministry of Power / Government of India; CERC | *Carbon Credit Trading Scheme 2023*; *Standards and Procedures Rules 2023*; compliance mechanism from July 2024; Carbon Credit Certificates on the BEE-run ICM registry | 2023–2024 | https://indiancarbonmarket.gov.in/ | **verified** — resolves HTTP 200 (a JavaScript application; the title is rendered client-side). Use the **bare** domain: `www.indiancarbonmarket.gov.in` returns HTTP 400. Dates confirmed on the slide and in appendix A6. |
+| C2 | India's Carbon Credit Trading Scheme 2023 — notified 28 June 2023 by the Ministry of Power under s. 14(w) of the **Energy Conservation Act 2001**; compliance mechanism from July 2024 under BEE's *Detailed Procedure for Compliance Mechanism under CCTS*; Carbon Credit Certificates on the ICM registry, run by the **Grid Controller of India** (BEE administers the scheme, CERC regulates it) | 28 Jun 2023 · Jul 2024 | Ministry of Power / Government of India; CERC; BEE | *Carbon Credit Trading Scheme, 2023*; *Detailed Procedure for Compliance Mechanism under Carbon Credit Trading Scheme* | 2023–2024 | https://indiancarbonmarket.gov.in/ | **verified 17 Nov 2026; three errors in the earlier version of this row are now fixed.** (1) The enabling Act is the **Energy Conservation Act, 2001** (52 of 2001) — not 2002; s. 14(w) was inserted by the Energy Conservation (Amendment) Act 2022. (2) **There is no notified "Carbon Credit Trading (Standards and Procedures) Rules 2023"** — no such instrument exists; the July 2024 instrument is BEE's *Detailed Procedure for Compliance Mechanism under CCTS*. (3) The registry is **not** run by BEE: the **Grid Controller of India Ltd** is the ICM registry operator, **BEE is the administrator** and **CERC the regulator**. The portal resolves HTTP 200 on the **bare** domain; `www.indiancarbonmarket.gov.in` returns HTTP 400. |
 | C3 | EU CBAM — definitive regime from 1 January 2026 | 1 Jan 2026 | European Commission | *Carbon Border Adjustment Mechanism* | 2026 | https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en | **verified** — resolves HTTP 200, title *"Carbon Border Adjustment Mechanism - Taxation and Customs Union"* |
-| C4 | CBAM: allowing Article 6 credits to reduce liability, capped at 10 % | draft, capped at 10 % | European Commission | draft amendment | **May 2026 — A DRAFT, NOT LAW** | https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en | labelled as a draft on the slide and in the slide's source line |
+| C4 | CBAM: allowing Article 6 credits to reduce liability, capped at 10 % | draft, capped at 10 % | **trade press reporting the Commission's draft** — Carbon Herald (15 May 2026), Sylvera (22 May 2026), Dcycle, cbamguide. **Not stated on the Commission's own CBAM page.** | draft implementing regulation on Article 9 carbon-price deductions | **May–June 2026 — A DRAFT, NOT LAW** | https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en | labelled as a draft on the slide and in the slide's source line, and the slide says the cap is reported in trade press. Two limits: the **10 % cap could not be confirmed on any official EU page**, and the mechanism is not a direct deduction — Article 6 credits enter through the producer's **weighted average carbon price**, with 10 % as the ceiling on how much credit-derived carbon price is recognised. |
 | C5 | CSRD / ESRS E1-6 (gross Scopes 1–3, no netting) and E1-7 (credits removed from gross and disclosed separately, with project detail) | gross, no netting | EFRAG | *ESRS E1-6* and *E1-7* | 2023–24 | https://www.efrag.org/ | confirmed in appendix A6 |
 
 ## D · The evidence (slide 6, appendix A1)
@@ -86,7 +86,7 @@ GreenToken contract source, and the chaincode file and line are the citation.
 | # | Claim | Figure | Publisher | Title | Year | URL | Status |
 |---|---|---|---|---|---|---|---|
 | G1 | The film | *How to Live on Earth*, narrated by Benedict Cumberbatch | Open Planet Studios | feature documentary | 2026 | https://www.youtube.com/watch?v=h3mRsvFmWi0 | **verified** — YouTube oEmbed returns the title *"How to Live on Earth \| Feature Documentary \| Presented by Benedict Cumberbatch"* and the channel **Open Planet**. The full-film URL as printed on the slide. |
-| G2 | The 2-minute clip used in the cold open | the same film | Open Planet Studios | — | 2026 | https://www.youtube.com/watch?v=-DkCQKQPaWI | **verified** — oEmbed title *"How to Live on Earth \| Official Clip \| World's Greatest How-to Video"*, channel **Open Planet**. The slide hyperlinks to this. |
+| G2 | The clip used in the cold open | the same film, **54 seconds** | Open Planet Studios | *How to Live on Earth \| Official Clip \| World's Greatest How-to Video* | 2026 (uploaded **1 September 2026**) | https://www.youtube.com/watch?v=-DkCQKQPaWI | **verified** — oEmbed title *"How to Live on Earth \| Official Clip \| World's Greatest How-to Video"*, channel **Open Planet**, and the watch page carries `"lengthSeconds":"54"`. The slide used to call this a "2-minute clip"; it is 54 seconds, and the slide now says so. |
 | G3 | The film is linked, never copied | — | — | — | — | — | **No frame of it is in the deck or the repository.** The slide carries a hyperlink to the official upload and states "We link the film. We never copy a frame of it." |
 
 ## H · The SDG reference (slide 13)
@@ -114,13 +114,14 @@ Every numeric string that appears in the deck's text, and where it is accounted 
 | 1.7 bn t | 3 | A3 |
 | 610 Mt | 3 | A4 |
 | 17 of 20 | 3 | A5 |
-| $1.4 bn | 4 | B1 |
+| US$ 1.4 bn (2025) | 4 | B1 |
 | 294 Mt, 202 Mt | 4 | B2, B3 |
-| 71 Mt | 4 | B4 |
+| 71 Mt (2024) | 4 | B4 |
 | 18 registries | 4 | B5 |
 | 2.6 bn credits since Paris | 4 | B6 |
 | 10,200+ registered projects | 4 | B7 |
-| 28 June 2023, July 2024 | 5 | C2 |
+| 54 seconds, 96 minutes, 2026 | 2 | G1, G2 |
+| 28 June 2023, July 2024, 2001 | 5 | C2 |
 | 1 January 2026, 10 % (draft) | 5 | C3, C4 |
 | 89 m, 5.4 m, 6 %, 16 of 18 | 6 | D1 |
 | 15.2 m, 10.3 m | 6 | D2 |
@@ -144,7 +145,7 @@ unsourced claims.
 | Number | Where | What it is |
 |---|---|---|
 | `6.2`, `6.4` | slide 5 | Paragraph identifiers inside Paris Agreement Article 6 (6.2 ITMOs, 6.4 PACM). They are the article's own numbering, not a measurement. |
-| `14(w)` | slide 5 | The section of the Energy Conservation Act 2002 under which India's CCTS was notified. |
+| `14(w)` | slide 5 | The section of the **Energy Conservation Act 2001** (52 of 2001) under which India's CCTS was notified. |
 | `40 neem`, `8 km away`, `12.9716° N`, `9f2c…a41e` | slide 7 | The illustrative Ravi scenario: a made-up planting in Mandya, Karnataka, with a truncated photo hash. Slide 7 says so in its source line. |
 | `4c1f…a92e`, `77be…03d1`, `9f0c…6b48`, `ecd:p256` | slide 1, A4 | Truncated block hashes and the signature algorithm, from the live ledger — they are the mechanism, not a measurement. |
 | `GT-000010` | A8, the script, the demo | The token id minted by the rehearsal. Deterministic because the SPA seed holds 9 tokens. |
@@ -170,7 +171,13 @@ read at source. This is what was checked and what the check returned.
 | Indian Carbon Market registry | Direct fetch | HTTP 200 on the **bare** domain; `www.` returns 400. |
 | InfluenceMap | Direct fetch + publisher search | HTTP 200. The exact briefing is *Carbon Majors: 2024 Data Update*. |
 | CarbonPlan | Direct fetch + publisher search | HTTP 200. The Kariba investigation is at `/research/kariba-excess-credits`; Verra's own statement is at `verra.org`. |
-| YouTube — the film and the clip | YouTube oEmbed API | Titles and channel confirmed: *How to Live on Earth*, presented by Benedict Cumberbatch, channel **Open Planet**. |
+| YouTube — the film and the clip | YouTube oEmbed API + the watch page | Titles and channel confirmed: *How to Live on Earth*, presented by Benedict Cumberbatch, channel **Open Planet**. The watch pages also carry the durations: `"lengthSeconds":"5796"` (96 minutes) for the feature and `"lengthSeconds":"54"` for the clip. Upload dates: 20 Sep 2026 (feature), 1 Sep 2026 (clip). |
+| MSCI, *Carbon Credits Come of Age in 2025* (6 Jan 2026) | Direct fetch of the blog post | **HTTP 200; the post's own numbers:** *"As of Dec. 31, 2025, more than 10,200 projects were registered across the 18 major carbon-credit registries tracked by MSCI. These projects issued 294 million tonnes of carbon-dioxide equivalent (MtCO2e) of credits during the year and more than 2.6 billion credits in total since the Paris Agreement was signed in late 2016. On the demand side, 202 MtCO2e of credits were retired"* and *"the value of the primary carbon-credit market … remained broadly unchanged in 2025 at around USD 1.4 billion"*. Every slide-4 figure except the 71 Mt is confirmed here. |
+| MSCI, *Frozen Carbon Credit Market May Thaw as 2030 Gets Closer* (6 Jan 2025) | Direct fetch | HTTP 200; the 2024 vintage: *"around USD 1.4 billion"*, 305 Mt issued and 180 Mt retired in 2024, 6,200+ projects across 12 registries, 2.1 bn credits since Paris. This is the post that made the $1.4 bn look like a 2024 figure. |
+| UNCTAD, *The Role of Voluntary Carbon Markets in Global Climate Action* | PDF fetched (2.2 MB) and text-extracted | **HTTP 200.** The 71 Mt is in the report's own words: *"a persistent surplus of issued but unretired credits, such as the 71 million credits, like 2024's 71 Mt, surplus in 2024"*. Figure 1.2 plots issuances and retirements 2018–2024 with cumulative non-retired credits. |
+| ICM — registry operator and administrator | Official portal (*About ICM*), BEE's carbon-market page, ICAP, Carbon Market Network | **Grid Controller of India Ltd operates the ICM registry**; BEE administers the scheme; CERC is the regulator. A "Framework for Designation of Registry Operator" is the instrument that appointed it. |
+| BEE, *Detailed Procedure for Compliance Mechanism under CCTS* (July 2024) | Publisher search + law-firm analyses (AZB & Partners 29 Jul 2024, Enviliance, Lexology) | The July 2024 compliance instrument exists and is the one that starts the obligation cycle. No "Standards and Procedures Rules 2023" appears anywhere. |
+| CBAM draft — the 10 % cap | Official Commission page + trade press (Carbon Herald 15 May 2026, Sylvera 22 May 2026, Dcycle, cbamguide) | The Commission page resolves HTTP 200 but **does not state a 10 % cap**. The draft implementing regulation on Article 9 carbon-price deductions was published mid-May 2026 and went to consultation (feedback closed ~10 June 2026). The cap is confirmed only in trade press, and credits act through the producer's weighted average carbon price, not as a direct deduction. |
 | EFRAG, MSCI, The Guardian, Science.org | Direct fetch | Roots resolve; the specific document pages were **not** captured, and the rows say so. |
 
 ### Corrections made on 17 November 2026 after this verification
@@ -181,3 +188,19 @@ read at source. This is what was checked and what the check returned.
 | 6, A6 | "Probs et al." | "**Probst** et al." | The 2024 author is Benedict **Probst** — the name was missing its final *t*. |
 | 6 (card 3) | "…across every project type reviewed" | "…**2,346 projects reviewed**" | The paper's ">80 %" is the *overall* figure across the projects studied; per-type real reductions range from 11 % to 68 %, so the old wording over-claimed. |
 | script | "The gap is 92 Mt that no one can retire" | "**71 Mt issued but never retired**" | 71 Mt is what the slide prints and what MSCI/UNCTAD carry. 92 Mt is only the arithmetic difference between the two 2025 flow figures, and it is a different quantity. |
+
+### Corrections made on 17 November 2026, second pass (after checking the primary documents)
+
+Every one of these was checked against the source document itself, not against a search result.
+
+| Slide | Was | Now | Why |
+|---|---|---|---|
+| 2 | "the official **2-minute** clip" | "the official **54-second** clip" | The watch page carries `"lengthSeconds":"54"`. The clip was always 54 seconds. |
+| 4 | "71 Mt of credits were issued and never used" | "**In 2024**, 71 Mt …" | UNCTAD's own text: *"the 71 million credits, like 2024's 71 Mt, surplus in 2024"*. The figure is a 2024 number; the chart beside it is 2025. |
+| 4 | "primary market value, **2025**" | **kept** | Checked and confirmed. MSCI's *Carbon Credits Come of Age in 2025* (6 Jan 2026) says the market was *"broadly unchanged in 2025 at around USD 1.4 billion"*. An earlier note called this a 2024 figure because MSCI's *earlier* post carried the same number for 2024. The deck cites the 2026 post, so "2025" is right. |
+| 5 | "Carbon Credit Trading (Standards and Procedures) Rules 2023" | "**compliance mechanism from July 2024 under the BEE Detailed Procedure**" | No such instrument was ever notified. The July 2024 instrument is BEE's *Detailed Procedure for Compliance Mechanism under CCTS*. |
+| 5 | "Energy Conservation Act" / "**2002**" | "**Energy Conservation Act 2001**" | The enabling Act is the Energy Conservation Act, 2001 (52 of 2001); s. 14(w) was inserted in 2022. |
+| 5 | "the **BEE-run** Indian Carbon Market registry" | "the ICM registry, run by the **Grid Controller of India**" | The Grid Controller of India Ltd is the registry operator; BEE administers the scheme and CERC regulates it. |
+| 5 | "Article 6 credits deductible against the bill, capped at 10 %" | "Article 6 credits cut the bill through the producer's carbon price, capped at 10 % … a cap reported in trade press, not in the Commission's own text" | The 10 % cap is not on any official EU page — it is confirmed only in trade press (Carbon Herald 15 May 2026, Sylvera 22 May 2026). The mechanism is a weighted-average carbon price, not a direct deduction. |
+| A6 | "Every figure in this deck … Anything not on this table did not go on a slide." | "The headline figures behind this deck … The full number audit — every figure on every slide — is in sources/sources.md." | The table was never complete: the 71 Mt, the $1.4 bn, the registries and the projects were not on it. The claim was true of nothing on earth. |
+| A6 | "Carbon Credit Trading Scheme, India · Ministry of Power / CERC / BEE (ICM registry) · 2023" | "…Ministry of Power / CERC / BEE · **2023–24**" | The registry is not BEE's (see above), and the compliance mechanism arrives in July 2024. |

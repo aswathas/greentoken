@@ -80,7 +80,7 @@ function s02Video(pres) {
     fontFace: F.body, fontSize: 13, bold: true, color: C.mint, valign: 'middle',
     hyperlink: { url: VIDEO_CLIP },
   });
-  s.addText('the official 2-minute clip  ·  youtu.be/-DkCQKQPaWI', {
+  s.addText('the official 54-second clip  ·  youtu.be/-DkCQKQPaWI', {
     x: M + 1.15, y: y + 2.6, w: 5.3, h: 0.28, margin: 0,
     fontFace: F.mono, fontSize: 9, color: '9FB4A7', valign: 'middle',
   });
@@ -202,7 +202,7 @@ function s04Escape(pres) {
     valGridLine: { color: C.line, size: 1 }, catGridLine: { style: 'none' },
     plotArea: { fill: { color: C.white } }, chartArea: { fill: { color: C.white } },
   });
-  s.addText('71 Mt of credits were issued and never used — claims that exist on paper and are retired by nobody.', {
+  s.addText('In 2024, 71 Mt of credits were issued and never used — claims that exist on paper and are retired by nobody.', {
     x: M, y: y + 3.66, w: 5.4, h: 0.5, margin: 0,
     fontFace: F.body, fontSize: 11, color: C.muted, lineSpacing: 15, valign: 'top',
   });
@@ -236,9 +236,9 @@ function s04Escape(pres) {
     fontFace: F.body, fontSize: 11, color: 'BFD0C6', valign: 'middle',
   });
 
-  foot(s, { page: 4, source: 'MSCI, “Carbon Credits Come of Age in 2025” · UNCTAD, Role of Voluntary Carbon Markets in Global Climate Action (2025)' });
+  foot(s, { page: 4, source: 'MSCI, “Carbon Credits Come of Age in 2025” (Jan 2026) · UNCTAD, The Role of Voluntary Carbon Markets in Global Climate Action (2025)' });
   s.addNotes('40 seconds. The chart carries it — 294 issued, 202 retired. Do not read every fact on the right; read two.\n\n'
-    + '"Two hundred and ninety-four million tonnes of credits were issued last year. Two hundred and two million were used. Seventy-one million exist as claims on paper that nobody ever retires."\n\n'
+    + '"Two hundred and ninety-four million tonnes of credits were issued last year. Two hundred and two million were used. And in 2024, seventy-one million tonnes existed as claims on paper that nobody ever retires."\n\n'
     + 'Then the pivot: "And then the law made buying mandatory."\n\n'
     + 'If you are short on time, cut the four facts and go straight to the green box.');
   return s;
@@ -255,8 +255,8 @@ function s05Law(pres) {
 
   const layers = [
     ['GLOBAL', 'Paris Agreement Article 6 · 6.2 ITMOs with a corresponding adjustment · 6.4 PACM on the UNFCCC registry', C.moss],
-    ['NATIONAL', 'India · Carbon Credit Trading Scheme 2023 (Energy Conservation Act, s. 14(w)) · CERC is the designated regulator · Carbon Credit Trading (Standards and Procedures) Rules 2023 · compliance from July 2024 · Carbon Credit Certificates on the BEE-run Indian Carbon Market registry', C.moss],
-    ['BORDER', 'EU CBAM · definitive regime from 1 January 2026 · draft rule: Article 6 credits deductible against the bill, capped at 10 % of the exported goods’ emissions', C.amber],
+    ['NATIONAL', 'India · Carbon Credit Trading Scheme 2023 (Energy Conservation Act 2001, s. 14(w)) · CERC is the designated regulator · compliance mechanism from July 2024 under the BEE Detailed Procedure · Carbon Credit Certificates on the ICM registry, run by the Grid Controller of India', C.moss],
+    ['BORDER', 'EU CBAM · definitive regime from 1 January 2026 · May 2026 draft: Article 6 credits cut the bill through the producer’s carbon price, capped at 10 % of the exported goods’ emissions — a cap reported in trade press, not in the Commission’s own text', C.amber],
     ['DISCLOSURE', 'CSRD / ESRS E1-6 · gross Scope 1–3, no netting of credits · E1-7 · credits and removals disclosed separately, project by project', C.amber],
   ];
 
@@ -290,11 +290,11 @@ function s05Law(pres) {
     fontFace: F.display, fontSize: 17, bold: true, color: C.forest, valign: 'middle', align: 'center',
   });
 
-  foot(s, { page: 5, source: 'UNFCCC Article 6 · Carbon Credit Trading Scheme 2023 (28 June 2023) and Carbon Credit Trading (Standards and Procedures) Rules 2023 · CERC · BEE / indiancarbonmarket.gov.in · EU CBAM definitive regime 1 Jan 2026 (Article 6 credit deduction is a May 2026 DRAFT) · EFRAG ESRS E1-6, E1-7' });
+  foot(s, { page: 5, source: 'UNFCCC Article 6 · India CCTS 2023 (28 June 2023, Energy Conservation Act 2001 s. 14(w)) · BEE Detailed Procedure for Compliance Mechanism (July 2024) · CERC · Grid Controller of India (ICM registry) · EU CBAM definitive regime 1 Jan 2026 (the Article 6 credit deduction is a May 2026 DRAFT; the 10 % cap is reported in trade press) · EFRAG ESRS E1-6, E1-7' });
   s.addNotes('70 seconds — this is the slide the teacher will interrogate. Read the four bands by their label only (GLOBAL / NATIONAL / BORDER / DISCLOSURE), then stop at the dashed band.\n\n'
-    + '"Four layers of law. Paris Article 6 makes a credit transfer between countries auditable. India built a scheme in 2023 with CERC as regulator and a registry run by BEE. Europe put a border tax on carbon from January this year. The EU now requires companies to disclose credits separately from emissions."\n\n'
+    + '"Four layers of law. Paris Article 6 makes a credit transfer between countries auditable. India built a scheme in 2023 with CERC as regulator, the Grid Controller of India running its registry, and BEE administering it. Europe put a border tax on carbon from January this year. The EU now requires companies to disclose credits separately from emissions."\n\n'
     + 'Then point at the dashed band: "Every one of them stops at the same sentence. Prove it. And not one of them says who checks, or how, or what happens to the person who does not."\n\n'
-    + 'BE PRECISE if asked: the CBAM Article 6 credit deduction is a DRAFT (May 2026), capped at 10 %. ESRS E1-6 requires gross reporting with no netting; E1-7 requires credits disclosed separately with project detail.');
+    + 'BE PRECISE if asked: the CBAM Article 6 credit deduction is a DRAFT (published mid-May 2026) and the 10 % cap comes from trade-press reporting of that draft — the Commission’s own page does not state it. India’s enabling Act is the Energy Conservation Act 2001, s. 14(w); the July 2024 instrument is BEE’s Detailed Procedure for Compliance Mechanism, and there is no separate "Standards and Procedures Rules 2023". ESRS E1-6 requires gross reporting with no netting; E1-7 requires credits disclosed separately with project detail.');
   return s;
 }
 

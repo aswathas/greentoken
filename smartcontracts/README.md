@@ -78,7 +78,15 @@ fingerprint breaks the chain, visibly, in front of the class.
   Probst et al. abstract via Europe PMC. Four citation errors were found and fixed that way
   (the *Science* 2023 paper is **West et al.**, not Probst; the Nature Communications author is
   **Probst**, not "Probs"; the ">80 %" figure is overall, not per project type; and the script's
-  "92 Mt" is not the slide's 71 Mt). The log lists all four.
+  "92 Mt" is not the slide's 71 Mt). A second pass, against the **primary documents** rather than
+  search results, found four more and fixed them: the cold-open clip is **54 seconds**, not two
+  minutes; the **71 Mt** is UNCTAD's **2024** surplus, while the chart beside it is 2025; India's
+  enabling Act is the Energy Conservation Act **2001** and the July 2024 instrument is BEE's
+  *Detailed Procedure for Compliance Mechanism* (there is no "Standards and Procedures Rules 2023");
+  and the ICM registry is run by the **Grid Controller of India**, with BEE administering the scheme
+  — not "BEE-run". The CBAM 10 % cap could not be confirmed on any official EU page; it is now
+  labelled as trade-press reporting of a May 2026 draft, and the slide says so. The log lists all
+  eight corrections.
 - **The deck is a script, not a document.** 13 spoken slides, one idea each, one visual each, no
   text-heavy bullets. The teaching depth lives in the appendix so it can be promoted into the talk
   when the slot is longer, and handed to the students afterwards.

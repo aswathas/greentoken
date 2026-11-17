@@ -22,7 +22,7 @@ Timing is cumulative. If you are running long, cut slides 4 and 10 first (they a
 | # | Slide | Clock | Sec | Opening line (verbatim cue) |
 |---|---|---|---|---|
 | 1 | Title | 0:00 | 15 | "Every how-to needs proof. Today I am going to show you a how-to that proves itself." |
-| 2 | The video | 0:15 | 40 | "In September, Open Planet released a documentary called *How to Live on Earth*, narrated by Benedict Cumberbatch. Its argument is that the answers already exist. Let me play the first two minutes." |
+| 2 | The video | 0:15 | 40 | "In September, Open Planet released a documentary called *How to Live on Earth*, narrated by Benedict Cumberbatch. Its argument is that the answers already exist. Let me play the official clip." |
 | 3 | Who is doing this | 0:55 | 55 | "Here is the uncomfortable part of that film. The solutions exist — but thirty-two companies are responsible for half the world's carbon dioxide. Thirty-two. That is good news: a rule for thirty-two companies can be checked." |
 | 4 | The escape hatch | 1:50 | 40 | "And this is how it stays that way. A carbon credit is one tonne that somebody else removed from the atmosphere, sold to you so that your number goes down. Look at the scale of the market that now runs on this." |
 | 5 | The law arrives | 2:30 | 70 | "So the law caught up. Four layers of it, and every one of them says the same thing — *prove it*. Paris Article 6. India's CCTS 2023. EU CBAM. CSRD and ESRS E1. Look very carefully at that red line: **none of them says who checks.**" |
@@ -40,9 +40,9 @@ Timing is cumulative. If you are running long, cut slides 4 and 10 first (they a
 ### Notes per slide (what the deck says, so you never read the slide)
 
 - **S1** — Do not read the title. Say the callback line and move.
-- **S2** — Click the play triangle (it is a live hyperlink to the 2-minute clip). Have the clip already open in a second tab as a fallback. Say: "We link the film. We never copy a frame of it."
+- **S2** — Click the play triangle (it is a live hyperlink to the 54-second clip). Have the clip already open in a second tab as a fallback. Say: "We link the film. We never copy a frame of it."
 - **S3** — Point at the bar first, then the three cards. Do not read all three cards; say "one point seven gigatonnes" and "six hundred and ten megatonnes" out loud and let the cards carry the rest.
-- **S4** — The chart is the argument: 294 Mt issued against 202 Mt retired in 2025, and **71 Mt issued but never retired** — claims that exist on paper and are retired by nobody. (Do not say "92 Mt": that is the arithmetic gap between the two flow figures; the number the slide prints, and the number the sources carry, is 71 Mt.)
+- **S4** — The chart is the argument: 294 Mt issued against 202 Mt retired in 2025, and **71 Mt issued but never retired in 2024** — claims that exist on paper and are retired by nobody. (Do not say "92 Mt": that is the arithmetic gap between the two 2025 flow figures; the number the slide prints is 71 Mt, and UNCTAD's own text calls it "2024's 71 Mt surplus".)
 - **S5** — Slow down on the dashed red band. That is the pivot of the whole talk.
 - **S6** — Say the three numbers slowly. Then land: "Six per cent is not proof. It is the market's normal case."
 - **S7** — This is the emotional turn. Do not rush it.
@@ -63,7 +63,7 @@ Timing is cumulative. If you are running long, cut slides 4 and 10 first (they a
 
 - [ ] Click **↺ Reset demo** in Ledger Explorer, so the planting creates a fresh token and the tiles read the seeded numbers.
 - [ ] Put **one photo file** on the Desktop, ready to select twice. (The duplicate-phash test needs the *same file* uploaded twice. "⚡ Generate sample proof" always mints a new hash — it will *not* trigger the refusal.)
-- [ ] Open the 2-minute clip in a second browser tab, muted, ready.
+- [ ] Open the 54-second clip in a second browser tab, muted, ready.
 - [ ] Browser: F11, hide bookmarks, zoom 100–125 % for a low-res projector. Test the projector at the back of the room.
 - [ ] Confirm the app loads: https://greentoken-7gc.pages.dev → Dashboard.
 - [ ] Load the presenter script PDF (Ctrl+P) on a second machine or printed, in case the browser dies.

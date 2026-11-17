@@ -79,8 +79,10 @@ function head(slide, opts) {
 function foot(slide, opts) {
   const dark = Boolean(opts.dark);
   if (opts.source) {
+    // a source line longer than one row gets a taller box so it never overflows
+    const two = opts.source.length > 185;
     slide.addText(opts.source, {
-      x: M, y: H - 0.52, w: W - 2 * M - 1.0, h: 0.3, margin: 0,
+      x: M, y: two ? H - 0.70 : H - 0.52, w: W - 2 * M - 1.0, h: two ? 0.46 : 0.3, margin: 0,
       fontFace: F.body, fontSize: 8.5, color: dark ? '8FA79A' : C.muted,
       valign: 'middle',
     });

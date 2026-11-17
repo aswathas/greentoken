@@ -44,7 +44,7 @@ tr.star td.n { color:#C8553D; }
 
 TALK = [
     (1, '15', 'Title', 'Every how-to needs proof. Today I am going to show you a how-to that proves itself.'),
-    (2, '40', 'The video', 'In September, Open Planet released a documentary called How to Live on Earth, narrated by Benedict Cumberbatch. Its argument is that the answers already exist. Let me play the first two minutes.'),
+    (2, '40', 'The video', 'In September, Open Planet released a documentary called How to Live on Earth, narrated by Benedict Cumberbatch. Its argument is that the answers already exist. Let me play the official clip.'),
     (3, '55', 'Who is doing this', 'Here is the uncomfortable part of that film. The solutions exist — but thirty-two companies are responsible for half the world\u2019s carbon dioxide. Thirty-two. That is good news: a rule for thirty-two companies can be checked.'),
     (4, '40', 'The escape hatch', 'A carbon credit is one tonne that somebody else removed from the atmosphere, sold to you so that your number goes down. Look at the scale of the market that now runs on this.'),
     (5, '70', 'The law arrives', 'So the law caught up. Four layers of it, and every one of them says the same thing — prove it. Paris Article 6. India\u2019s CCTS 2023. EU CBAM. CSRD and ESRS E1. Look very carefully at that red line: none of them says who checks.'),
@@ -89,7 +89,7 @@ CONTINGENCY = [
 PREFLIGHT = [
     'Click \u21ba Reset demo in Ledger Explorer first',
     'One photo file on the Desktop, selected twice (step 5)',
-    '2-minute clip open in a second tab, muted',
+    '54-second clip open in a second tab, muted',
     'F11, no bookmarks, zoom 100\u2013125 %, test the projector',
     'Route form: greentoken-7gc.pages.dev/#discover (hash, not path)',
     'output/offline/ on a USB stick',
@@ -101,7 +101,7 @@ NUMBERS = ('9 tokens &middot; 3 verified &middot; 4 funded &middot; 1 pending &m
 
 TALK_CUE = [
     (1, '15', 'Title', 'Every how-to needs proof. Today I will show you a how-to that proves itself.'),
-    (2, '40', 'The video', 'Open Planet released How to Live on Earth. The answers already exist. Play the first two minutes.'),
+    (2, '40', 'The video', 'Open Planet released How to Live on Earth. The answers already exist. Play the official clip.'),
     (3, '55', 'Who is doing this', 'Thirty-two companies are responsible for half the world\u2019s CO\u2082. Thirty-two \u2014 that is a rule we can check.'),
     (4, '40', 'The escape hatch', 'A credit is one tonne somebody else removed, sold to you so your number goes down.'),
     (5, '70', 'The law arrives', 'Four layers of law, all saying the same thing: prove it. And none of them says who checks.'),
