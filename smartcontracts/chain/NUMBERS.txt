@@ -1,0 +1,9 @@
+totalTokens = 9
+verifiedTokens = 3
+fundedTokens = 4
+pendingTokens = 1
+rejectedTokens = 1
+totalTrees = 170
+totalCo2Kg = 4743
+totalFundingInr = 5550
+blockCount = 29

@@ -1,0 +1,16 @@
+=== STEP 1 dashboard ===
+🌳 | GreenToken | Verifiable blue-green carbon | ◈ | Dashboard | 🌱 | Plant a Tree | ✓ | Verification | 1 | 🔍 | Discover & Fund | 🏆 | Leaderboard | ⛓ | Ledger Explorer | 🧾 | Invoices | Chain verified | 29 blocks · 9 tokens | Channel greentoken-channel | Dashboard | ACTING AS | L | Lakshmi Gowda | Sahyadri Planters Association | ▾ | UNIT 5 · BLOCKCHAIN TECHNOLOGY WITH HYPERLEDGER FABRIC | Plant it. Prove it. Tokenise it. |  | GreenToken turns a geo-stamped planting photo into a tamper-evident carbon token. Independent verifiers endorse the proof, funders discover real plantings on the map and fund them with a discounted invoice — all recorded on a hash-linked ledger. |  | 🌱 Plant a tree | 🔍 Explore verified tokens | ⛓ Inspect the ledger | Ledger intact | 29 blocks 
+localStorage ledger bytes: 135346
+=== STEP 4 plant (first upload) ===
+toasts: ['✓\nToken GT-000010 created and awaiting verification.', '✓\nToken GT-000010 created and awaiting verification.', '✓']
+=== STEP 5 plant AGAIN (same file) ===
+toasts: ['!\nThis photo has already been submitted for token GT-000010.', '!\nThis photo has already been submitted for token GT-000010.', '!']
+REFUSAL PRESENT: True
+=== STEP 8 tamper ===
+body has Tampering detected: True
+restored via Restore
+=== STEP 9 leaderboard ===
+🌳 | GreenToken | Verifiable blue-green carbon | ◈ | Dashboard | 🌱 | Plant a Tree | ✓ | Verification | 2 | 🔍 | Discover & Fund | 🏆 | Leaderboard | ⛓ | Ledger Explorer | 🧾 | Invoices | Chain verified | 30 blocks · 10 tokens | Channel greentoken-channel | Leaderboard | ACTING AS | L | Lakshmi Gowda | Sahyadri Planters Association | ▾ | Leaderboard |  | Every number below is derived from ledger state — a planter cannot inflate their own score, because the en
+=== NETWORK SAFETY ===
+non-GET requests during the whole rehearsal: NONE
+GET endpoints touched: ['https://greentoken-7gc.pages.dev/', 'https://greentoken-7gc.pages.dev/assets/index-DkpeiRh-.css', 'https://greentoken-7gc.pages.dev/assets/index-eUi65mAU.js', 'https://greentoken-api.aswathas13.workers.dev/api/health', 'https://tile.openstreetmap.org/4/10/6.png', 'https://tile.openstreetmap.org/4/10/7.png', 'https://tile.openstreetmap.org/4/11/6.png', 'https://tile.openstreetmap.org/4/11/7.png', 'https://tile.openstreetmap.org/4/12/6.png', 'https://tile.openstreetmap.org/4/12/7.png', 'https://tile.openstreetmap.org/5/21/13.png', 'https://tile.openstreetmap.org/5/21/14.png', 'https://tile.openstreetmap.org/5/22/13.png', 'https://tile.openstreetmap.org/5/22/14.png', 'https://tile.openstreetmap.org/5/23/13.png', 'https://tile.openstreetmap.org/5/23/14.png', 'https://tile.openstreetmap.org/5/24/13.png', 'https://tile.openstreetmap.org/5/24/14.png']
