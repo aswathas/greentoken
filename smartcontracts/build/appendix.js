@@ -309,7 +309,7 @@ function a06Evidence(pres) {
   const y = head(s, {
     kicker: 'Appendix A6',
     title: 'The evidence behind the numbers.',
-    deck: 'Every figure in this deck, with its publisher and its date. Anything not on this table did not go on a slide.',
+    deck: 'The deck’s headline evidence, with publisher and date. The full number audit is in sources/sources.md.',
   });
 
   const rows = [
@@ -321,7 +321,7 @@ function a06Evidence(pres) {
     ['Credits linked to real additional reductions', '6 % of 89 M', 'West et al., Science (Cambridge + VU Amsterdam)', '2023'],
     ['Kariba project excess credits', '15.2 M (10.3 M used)', 'Verra, reported by Carbonplan', '2025'],
     ['Credits likely over-credited', '80 %+', 'Probst et al., Nature Comms; US GAO-25-107128', '2024–25'],
-    ['Carbon Credit Trading Scheme, India', 'in force', 'Ministry of Power / CERC / BEE (ICM registry)', '2023'],
+    ['Carbon Credit Trading Scheme, India', 'in force', 'Ministry of Power / CERC / BEE', '2023–24'],
     ['EU Carbon Border Adjustment Mechanism', 'definitive', 'European Commission', 'from 1 Jan 2026'],
     ['CSRD / ESRS E1-6 and E1-7', 'gross, no netting', 'EFRAG / European Commission', '2023–24'],
     ['GreenToken live chain', '29 blocks · 29 txs', 'greentoken-api.aswathas13.workers.dev (GET)', '17 Nov 2026'],
