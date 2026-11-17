@@ -3,7 +3,7 @@
 **Date:** 17 November 2026 (second pass — citation corrections and re-delivery)
 **Branch:** `fix/deck-citation-corrections`
 **Base:** `main` @ `52aface` ("Merge pull request #4 from aswathas/docs/correct-onedrive-claim")
-**Push target:** `origin/fix/deck-citation-corrections` → PR → `main`
+**Push target:** `origin/fix/deck-citation-corrections` → **PR #5 → merged into `main` as `e1e24a3`** (content commit `67a9d4c`, kept as the merge's second parent)
 
 Every file below was **added** by the original teaching-pack PR (`feat/smartcontracts-teaching-deck` → PR #1 → merged into `main` as `c227ac2`). This branch **modifies** eleven of them, all inside `smartcontracts/`, and adds nothing outside it. Nothing in the existing application (`src/`, `chaincode/`, `worker/`, `network/`, `dist-deliverables/`) is modified, moved or deleted.
 
